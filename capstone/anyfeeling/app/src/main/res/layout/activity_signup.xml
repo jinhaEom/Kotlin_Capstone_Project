@@ -2,7 +2,8 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="#E4E4E4">
 
     <TextView
         android:layout_width="wrap_content"
@@ -67,21 +68,24 @@
         app:layout_constraintTop_toBottomOf="@id/passwordEditText" />
 
     <Button
-        android:text="취소하기"
         android:id="@+id/signupCancel"
         android:layout_width="200dp"
         android:layout_height="wrap_content"
-        app:layout_constraintStart_toStartOf="parent"
+        android:background="@drawable/loginbox"
+        android:text="취소하기"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/userNickname"
-        />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/userNickname" />
 
     <Button
         android:id="@+id/signupOk"
         android:layout_width="200dp"
         android:layout_height="wrap_content"
+        android:background="@drawable/loginbox"
+        android:backgroundTint="#6799FF"
         android:text="회원가입하기"
+
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.497"
