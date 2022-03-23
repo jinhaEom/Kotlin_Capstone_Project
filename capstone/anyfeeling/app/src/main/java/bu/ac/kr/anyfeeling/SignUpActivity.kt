@@ -2,12 +2,20 @@ package bu.ac.kr.anyfeeling
 
 import android.content.Intent
 import android.os.Bundle
-import android.util.Log
+import android.text.Editable
+import android.text.TextWatcher
+import android.view.View
 import android.widget.Button
 import android.widget.EditText
 import android.widget.Toast
+import android.widget.Toast.makeText
 import androidx.appcompat.app.AppCompatActivity
-import com.facebook.CallbackManager
+import androidx.core.widget.addTextChangedListener
+import com.facebook.appevents.suggestedevents.SuggestedEventsManager.isEnabled
+import com.facebook.internal.logging.monitor.Monitor.isEnabled
+import com.facebook.login.widget.LoginButton
+import com.google.android.material.snackbar.Snackbar
+
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
@@ -29,29 +37,32 @@ class SignUpActivity : AppCompatActivity() {
         val userNickname = findViewById<EditText>(R.id.userNickname)
         val signupOk = findViewById<Button>(R.id.signupOk)
 
+
         signupOk.setOnClickListener {
             createAccount(email.text.toString(),password.text.toString())
         }
+        /*if(password!=passwordCheck){
+
+            password.setText("")
+            Toast.makeText(this,"비밀번호가 틀립니다.",Toast.LENGTH_SHORT).show()
+
+        }*/
+
         cancel()
+       /* password.addTextChangedListener(object : TextWatcher{
+            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
 
+            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
+                if(password.text.toString()==passwordCheck.text.toString()){
+                    LoginButton.isEnabled = true
 
-        /*signupOk.setOnClickListener{
-            if(email.text.toString().isEmpty() || password.text.toString().isEmpty()) {
-                Toast.makeText(this, "아이디 혹은 비밀번호를 입력하세요.", Toast.LENGTH_SHORT).show()
-            }else{
+                }
+            }
 
+            override fun afterTextChanged(s: Editable?) {}
 
-                        }else{
+        })*/
 
-                        }
-                    }
-                        if(password.text.toString()!=passwordCheck.text.toString()){
-                            Toast.makeText(this, "비밀번호가 일치하지 않습니다.",Toast.LENGTH_SHORT).show()
-                        }
-                        }
-
-
-            }*/
 
     }
 
@@ -71,12 +82,17 @@ class SignUpActivity : AppCompatActivity() {
                             .show()
 
                     }
+
                 }
+
         }
+
     }
 
 
-        private fun cancel() {
+
+
+    private fun cancel() {
             val signupCancel = findViewById<Button>(R.id.signupCancel)
             signupCancel.setOnClickListener {
                 val intent = Intent(this, LoginActivity::class.java)
@@ -85,5 +101,8 @@ class SignUpActivity : AppCompatActivity() {
 
 
         }
+
+
+
 
     }

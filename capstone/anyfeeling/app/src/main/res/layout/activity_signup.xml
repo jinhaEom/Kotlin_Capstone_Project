@@ -24,7 +24,7 @@
         android:layout_marginHorizontal="20dp"
         android:layout_marginTop="160dp"
         android:background="@drawable/loginbox"
-        android:hint="ID (ID 혹은 이메일)"
+        android:hint="이메일 주소"
         android:paddingVertical="14dp"
         android:paddingLeft="10dp"
         android:paddingBottom="20dp"
