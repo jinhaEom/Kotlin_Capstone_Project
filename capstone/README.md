@@ -7,3 +7,4 @@
 - main 화면 디자인 구상
 
 <img src="https://user-images.githubusercontent.com/84216838/159652169-d785612a-0222-4d25-8c06-e3c95594957a.png" width=200 height=350/>
+<img src="https://user-images.githubusercontent.com/84216838/159922966-fdfd9fd4-a169-4769-9d31-a68f26d09a8b.png" width=200 height=350/>
