@@ -8,13 +8,13 @@
         app:showAsAction="always"
         android:enabled="true"
         android:icon="@drawable/ic_baseline_library_music_24"
-        android:title="Write" />
+        android:title="노래" />
     <item
         android:id="@+id/second_tab"
         app:showAsAction="always"
         android:enabled="true"
         android:icon="@drawable/ic_baseline_settings_24"
-        android:title="Maps"/>
+        android:title="설정"/>
 
 
 </menu>
