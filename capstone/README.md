@@ -10,6 +10,11 @@
 - 회원가입 시 Detail 요소(비밀번호확인) 수정
 - 페이스북 로그인 구현
 - main 화면 디자인 구상
-
+<div style="margin:0 auto;">
 <img src="https://user-images.githubusercontent.com/84216838/159652169-d785612a-0222-4d25-8c06-e3c95594957a.png" width=200 height=350/>
+&nbsp;
+
 <img src="https://user-images.githubusercontent.com/84216838/159922966-fdfd9fd4-a169-4769-9d31-a68f26d09a8b.png" width=200 height=350/>
+&nbsp;
+<img src="https://user-images.githubusercontent.com/84216838/160552900-14f05b42-7e4c-4c7e-b880-11c3822df007.png" width=200 height=350/>
+</div>
