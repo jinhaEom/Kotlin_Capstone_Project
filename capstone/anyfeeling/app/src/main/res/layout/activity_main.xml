@@ -5,13 +5,17 @@
     android:id="@+id/parent_layout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/black"
     tools:context=".MainActivity">
 
 
     <FrameLayout
         android:id="@+id/container"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"></FrameLayout>
+        android:layout_height="match_parent"/>
+
+    <include
+        app:layout="@layout/main_event" />
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/bottom_menu"
@@ -24,38 +28,7 @@
         app:labelVisibilityMode="labeled"
         app:menu="@menu/bottom_menu" />
 
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
 
-        <ImageView
-            android:id="@+id/ncs_logo1"
-            android:layout_width="300dp"
-            android:layout_height="300dp"
-            android:src="@drawable/ncs_logo1"
-            android:visibility="gone"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            tools:ignore="MissingConstraints"
-            tools:visibility="visible" />
-
-        <TextView
-            android:id="@+id/ncs_title"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:gravity="center"
-            android:text="당신의 NCS곡을 선택해보세요!"
-            android:textColor="@color/white"
-            android:textSize="22dp"
-            android:visibility="gone"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/ncs_logo1"
-            tools:visibility="visible" />
-    </androidx.constraintlayout.widget.ConstraintLayout>
 
 
 </RelativeLayout>

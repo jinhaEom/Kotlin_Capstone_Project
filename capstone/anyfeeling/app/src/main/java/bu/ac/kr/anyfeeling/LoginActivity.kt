@@ -6,6 +6,7 @@ import android.widget.Button
 import android.widget.EditText
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import bu.ac.kr.anyfeeling.FirstFragment.FirstFragment
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.auth.ktx.auth
@@ -63,7 +64,7 @@ class LoginActivity:AppCompatActivity() {
 
 
     // 유저정보 넘겨주고 메인 액티비티 호출
-    fun moveMainPage(user: FirebaseUser?){
+    private fun moveMainPage(user: FirebaseUser?){
         if( user!= null){
             startActivity(Intent(this,MainActivity::class.java))
             finish()

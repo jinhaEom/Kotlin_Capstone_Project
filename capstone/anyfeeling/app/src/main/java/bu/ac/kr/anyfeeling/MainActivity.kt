@@ -2,6 +2,10 @@ package bu.ac.kr.anyfeeling
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.View
+import android.widget.ImageView
+import android.widget.TextView
+import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import bu.ac.kr.anyfeeling.FirstFragment.FirstFragment
 import bu.ac.kr.anyfeeling.SecondFragment.SecondFragment
@@ -17,7 +21,9 @@ class MainActivity : AppCompatActivity() {
         val FirstFragment= FirstFragment()
         val SecondFragment = SecondFragment()
 
+
         val bottomNavigationView = findViewById<BottomNavigationView>(R.id.bottom_menu)
+
 
         bottomNavigationView.setOnItemSelectedListener {
             when (it.itemId){
@@ -25,7 +31,7 @@ class MainActivity : AppCompatActivity() {
                 R.id.second_tab -> replaceFragment(SecondFragment)
             }
             true
-            
+
         }
 
     }
@@ -36,4 +42,6 @@ class MainActivity : AppCompatActivity() {
                 commit()
             }
     }
+
+
 }
