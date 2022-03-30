@@ -25,6 +25,7 @@ class MainActivity : AppCompatActivity() {
                 R.id.second_tab -> replaceFragment(SecondFragment)
             }
             true
+            
         }
 
     }
