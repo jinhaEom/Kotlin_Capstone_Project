@@ -22,6 +22,7 @@ class MainActivity : AppCompatActivity() {
         val FirstFragment= FirstFragment()
         val SecondFragment = SecondFragment()
         val HomeFragment = HomeFragment()
+        supportFragmentManager.beginTransaction().add(R.id.container,HomeFragment()).commit()
 
 
 
@@ -30,16 +31,22 @@ class MainActivity : AppCompatActivity() {
 
 
 
+
         bottomNavigationView.setOnItemSelectedListener {
-            when (it.itemId){
-                R.id.first_tab -> replaceFragment(FirstFragment)
-                R.id.second_tab -> replaceFragment(SecondFragment)
-                R.id.Home_tab -> replaceFragment(HomeFragment)
+            replaceFragment(
+                when (it.itemId){
+                R.id.first_tab -> FirstFragment()
+                    R.id.second_tab -> SecondFragment()
+                    else -> HomeFragment()
 
             }
+            )
+
             true
 
+
         }
+
 
     }
     private fun replaceFragment(fragment: Fragment){
@@ -49,9 +56,7 @@ class MainActivity : AppCompatActivity() {
                 commit()
             }
     }
-    private fun disappearMenu(){
 
-    }
 
 
 }
