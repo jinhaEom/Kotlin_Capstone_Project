@@ -1,4 +1,4 @@
-package bu.ac.kr.anyfeeling.FirstFragment
+package bu.ac.kr.anyfeeling.firstFragment
 
 
 import android.os.Bundle
@@ -6,9 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import bu.ac.kr.anyfeeling.MainActivity
 import bu.ac.kr.anyfeeling.R
-import bu.ac.kr.anyfeeling.databinding.ActivityMainBinding
 import bu.ac.kr.anyfeeling.databinding.FragmentFirsttabBinding
 
 class FirstFragment : Fragment(R.layout.fragment_firsttab) {

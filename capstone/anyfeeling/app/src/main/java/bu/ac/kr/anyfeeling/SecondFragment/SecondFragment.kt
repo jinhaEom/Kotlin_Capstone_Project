@@ -1,7 +1,5 @@
-package bu.ac.kr.anyfeeling.SecondFragment
+package bu.ac.kr.anyfeeling.secondFragment
 
-import android.os.Bundle
-import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import bu.ac.kr.anyfeeling.R
 

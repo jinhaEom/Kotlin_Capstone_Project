@@ -4,15 +4,12 @@ import android.app.Activity
 import android.graphics.Color
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.TypedValue
 import android.view.View
 import android.view.WindowManager
-import android.widget.TextView
-import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
-import bu.ac.kr.anyfeeling.FirstFragment.FirstFragment
-import bu.ac.kr.anyfeeling.HomeFragment.HomeFragment
-import bu.ac.kr.anyfeeling.SecondFragment.SecondFragment
+import bu.ac.kr.anyfeeling.firstFragment.FirstFragment
+import bu.ac.kr.anyfeeling.homeFragment.HomeFragment
+import bu.ac.kr.anyfeeling.secondFragment.SecondFragment
 import bu.ac.kr.anyfeeling.databinding.ActivityMainBinding
 import com.google.android.material.bottomnavigation.BottomNavigationView
 

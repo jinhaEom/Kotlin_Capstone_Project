@@ -1,4 +1,4 @@
-package bu.ac.kr.anyfeeling.HomeFragment
+package bu.ac.kr.anyfeeling.homeFragment
 
 import android.os.Bundle
 import android.util.TypedValue
@@ -21,15 +21,13 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
         savedInstanceState: Bundle?
     ): View {
         val binding = FragmentHomeBinding.inflate(inflater,container, false)
-        return binding.root
-
         binding.scrollView.viewTreeObserver.addOnScrollChangedListener {
             if(binding.scrollView.scrollY > 150f.dpToPx(this).toInt()){
-                if(!isGatheringMotionAnimating){
-                    binding.gatheringDigitalThingsLayout.transitionToStart()
+                if(isGatheringMotionAnimating.not()){
+                    binding.gatheringDigitalThingsLayout.transitionToEnd()
                 }
             }else{
-                if(!isGatheringMotionAnimating){
+                if(isGatheringMotionAnimating.not()){
                     binding.gatheringDigitalThingsLayout.transitionToStart()
                 }
             }
@@ -38,34 +36,17 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
             override fun onTransitionStarted(motionLayout: MotionLayout?, startId: Int, endId: Int) {
                 isGatheringMotionAnimating = true
             }
-
-            override fun onTransitionChange(
-                motionLayout: MotionLayout?,
-                startId: Int,
-                endId: Int,
-                progress: Float
-            ) {
-                TODO("Not yet implemented")
-            }
-
+            override fun onTransitionChange(motionLayout: MotionLayout?, startId: Int, endId: Int, progress: Float) {}
             override fun onTransitionCompleted(motionLayout: MotionLayout?, currentId: Int) {
                 isGatheringMotionAnimating = false
             }
-
-            override fun onTransitionTrigger(
-                motionLayout: MotionLayout?,
-                triggerId: Int,
-                positive: Boolean,
-                progress: Float
-            ) {
-                TODO("Not yet implemented")
-            }
-
+            override fun onTransitionTrigger(motionLayout: MotionLayout?, triggerId: Int, positive: Boolean, progress: Float)
+            {}
         })
+        return binding.root
     }
-
-
-
 }
+
 fun Float.dpToPx(context: HomeFragment): Float =
     TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP,this,context.resources.displayMetrics)
+
