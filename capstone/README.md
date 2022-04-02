@@ -13,9 +13,9 @@
 - viewPager 이용해보기
 <div style="margin:0 auto;">
 <img src="https://user-images.githubusercontent.com/84216838/159652169-d785612a-0222-4d25-8c06-e3c95594957a.png" width=200 height=350/>
-&nbsp;
-
+&nbsp
 <img src="https://user-images.githubusercontent.com/84216838/159922966-fdfd9fd4-a169-4769-9d31-a68f26d09a8b.png" width=200 height=350/>
 &nbsp;
 <img src="https://user-images.githubusercontent.com/84216838/160552900-14f05b42-7e4c-4c7e-b880-11c3822df007.png" width=200 height=350/>
 </div>
+<video src="https://user-images.githubusercontent.com/84216838/161380941-1375b7a3-80a8-4660-9ef7-e3bb21c3ed00.mp4" width=200px height=350px />
