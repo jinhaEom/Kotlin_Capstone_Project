@@ -1,5 +1,6 @@
 package bu.ac.kr.anyfeeling.homeFragment
 
+import android.content.Context
 import android.os.Bundle
 import android.util.TypedValue
 import android.view.LayoutInflater
@@ -9,11 +10,15 @@ import androidx.constraintlayout.motion.widget.MotionLayout
 import androidx.fragment.app.Fragment
 import bu.ac.kr.anyfeeling.R
 import bu.ac.kr.anyfeeling.databinding.FragmentHomeBinding
+import bu.ac.kr.anyfeeling.dpToPx
+import javax.security.auth.callback.Callback
 
 class HomeFragment : Fragment(R.layout.fragment_home) {
 
 
     private var isGatheringMotionAnimating: Boolean = false
+
+
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -43,10 +48,31 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
             override fun onTransitionTrigger(motionLayout: MotionLayout?, triggerId: Int, positive: Boolean, progress: Float)
             {}
         })
+
         return binding.root
     }
+
+    override fun onStart() {
+        super.onStart()
+    }
+
+    override fun onResume() {
+        super.onResume()
+    }
+
+    override fun onPause() {
+        super.onPause()
+    }
+
+    override fun onStop() {
+        super.onStop()
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+    }
+
 }
 
-fun Float.dpToPx(context: HomeFragment): Float =
-    TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP,this,context.resources.displayMetrics)
+
 

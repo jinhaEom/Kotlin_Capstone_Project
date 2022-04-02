@@ -4,6 +4,7 @@ import android.app.Activity
 import android.graphics.Color
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.TypedValue
 import android.view.View
 import android.view.WindowManager
 import androidx.fragment.app.Fragment
@@ -73,3 +74,5 @@ fun Activity.makeStatusBarTransparent() {
         statusBarColor = Color.TRANSPARENT
     }
 }
+fun Float.dpToPx(context: HomeFragment): Float =
+    TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP,this,context.resources.displayMetrics)
