@@ -24,7 +24,7 @@
 
             <View
                 android:layout_width="match_parent"
-                android:layout_height="550dp"
+                android:layout_height="580dp"
                 android:background="@color/black" />
 
             <androidx.constraintlayout.motion.widget.MotionLayout
@@ -37,7 +37,7 @@
                 <ImageView
                     android:id="@+id/logoImageView2"
                     android:layout_width="400dp"
-                    android:layout_height="250dp"
+                    android:layout_height="270dp"
                     android:scaleType="centerCrop"
                     android:src="@drawable/ncs_logo2"
                     app:layout_constraintBottom_toBottomOf="parent"
