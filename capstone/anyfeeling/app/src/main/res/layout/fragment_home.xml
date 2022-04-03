@@ -51,7 +51,8 @@
     <TextView
         android:text="지금 바로 NCS 음악을 즐겨보세요!"
         android:textColor="@color/white"
-        android:textSize="25sp"
+        android:textSize="22dp"
+        android:gravity="center"
         android:textStyle="bold"
         android:id="@+id/textView"
         android:layout_width="0dp"
