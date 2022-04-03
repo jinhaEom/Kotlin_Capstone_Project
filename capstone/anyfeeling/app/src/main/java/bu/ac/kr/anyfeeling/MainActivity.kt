@@ -1,12 +1,11 @@
 package bu.ac.kr.anyfeeling
 
-import android.app.Activity
-import android.graphics.Color
+
+import android.content.Context
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.TypedValue
-import android.view.View
-import android.view.WindowManager
+
 import androidx.fragment.app.Fragment
 import bu.ac.kr.anyfeeling.firstFragment.FirstFragment
 import bu.ac.kr.anyfeeling.homeFragment.HomeFragment
@@ -16,7 +15,8 @@ import com.google.android.material.bottomnavigation.BottomNavigationView
 
 
 class MainActivity : AppCompatActivity() {
-    val binding by lazy{ ActivityMainBinding.inflate(layoutInflater)}
+
+    private val binding by lazy{ ActivityMainBinding.inflate(layoutInflater)}
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -24,18 +24,13 @@ class MainActivity : AppCompatActivity() {
 
 
 
-        val FirstFragment= FirstFragment()
+        /*val FirstFragment= FirstFragment()
         val SecondFragment = SecondFragment()
-        val HomeFragment = HomeFragment()
-        supportFragmentManager.beginTransaction().add(R.id.container,HomeFragment()).commit()
-
+        val HomeFragment = HomeFragment()*/
+        supportFragmentManager.beginTransaction().add(R.id.container,HomeFragment()).commitAllowingStateLoss()
 
 
         val bottomNavigationView = findViewById<BottomNavigationView>(R.id.bottom_menu)
-
-
-
-
 
         bottomNavigationView.setOnItemSelectedListener {
             replaceFragment(
@@ -44,7 +39,7 @@ class MainActivity : AppCompatActivity() {
                     R.id.second_tab -> SecondFragment()
                     else -> HomeFragment()
 
-            }
+                }
             )
 
             true
@@ -58,7 +53,7 @@ class MainActivity : AppCompatActivity() {
         supportFragmentManager.beginTransaction()
             .apply {
                 replace(R.id.container,fragment)
-                commit()
+                commitAllowingStateLoss()
             }
     }
 
@@ -66,13 +61,5 @@ class MainActivity : AppCompatActivity() {
 
 }
 
-fun Activity.makeStatusBarTransparent() {
-    window.apply {
-        decorView.systemUiVisibility = View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN or
-                View.SYSTEM_UI_FLAG_LAYOUT_STABLE
-        addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS)
-        statusBarColor = Color.TRANSPARENT
-    }
-}
 fun Float.dpToPx(context: HomeFragment): Float =
     TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP,this,context.resources.displayMetrics)
