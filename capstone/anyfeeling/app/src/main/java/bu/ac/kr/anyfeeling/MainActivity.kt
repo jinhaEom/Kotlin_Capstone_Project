@@ -2,7 +2,6 @@ package bu.ac.kr.anyfeeling
 
 
 import android.app.Activity
-import android.content.Context
 import android.graphics.Color
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -18,7 +17,6 @@ import bu.ac.kr.anyfeeling.secondFragment.SecondFragment
 import bu.ac.kr.anyfeeling.databinding.ActivityMainBinding
 import bu.ac.kr.anyfeeling.databinding.FragmentHomeBinding
 import com.google.android.material.appbar.AppBarLayout
-import com.google.android.material.appbar.CollapsingToolbarLayout
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import kotlin.math.abs
 
@@ -30,6 +28,9 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
+
+
+
 
 
             makeStatusBarTransparent(context = HomeFragment())
@@ -56,17 +57,43 @@ class MainActivity : AppCompatActivity() {
             }
         }
 
+    private fun fragmenthome3(binding: FragmentHomeBinding){
+        binding.appBar.addOnOffsetChangedListener(AppBarLayout.OnOffsetChangedListener { appBarLayout, verticalOffset ->
+            val topPadding = 300f.dpToPx(context = HomeFragment())
+            val realAlphaScrollHeight = appBarLayout.measuredHeight - appBarLayout.totalScrollRange
+            val abstractOffset = abs(verticalOffset)
 
-        private fun replaceFragment(fragment: Fragment) {
+            val realAlphaVerticalOffset = if (abstractOffset - topPadding < 0) 0f else abstractOffset - topPadding
+
+            if (abstractOffset < topPadding) {
+                binding.toolbarBackgroundView.alpha = 0f  // 액션바 투명
+                return@OnOffsetChangedListener
+            }
+            val percentage = realAlphaVerticalOffset / realAlphaScrollHeight
+            binding.toolbarBackgroundView.alpha = 1 - (if (1 - percentage * 2 < 0) 0f else 1 - percentage * 2)
+        }
+
+        )
+        with(binding){  //ActionBar 커스터마이징
+            toolbar.navigationIcon = null
+            toolbar.setContentInsetsAbsolute(0,0)
+            setSupportActionBar(binding.toolbar)
+            supportActionBar?.let{
+                it.setHomeButtonEnabled(false)
+                it.setDisplayHomeAsUpEnabled(false)
+                it.setDisplayShowHomeEnabled(false)
+            }
+
+        }
+    }
+
+    private fun replaceFragment(fragment: Fragment) {
             supportFragmentManager.beginTransaction()
                 .apply {
                     replace(R.id.container, fragment)
                     commitAllowingStateLoss()
                 }
         }
-
-
-
 
 
 
@@ -84,6 +111,8 @@ fun Activity.makeStatusBarTransparent(context: HomeFragment){
         statusBarColor = Color.TRANSPARENT
     }
 }
+
+
 
 
 
