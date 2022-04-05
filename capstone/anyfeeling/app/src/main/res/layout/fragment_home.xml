@@ -4,6 +4,7 @@
     android:id="@+id/coordinator"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/black"
     android:fitsSystemWindows="false">
 
     <androidx.constraintlayout.motion.widget.MotionLayout xmlns:app="http://schemas.android.com/apk/res-auto"
@@ -15,7 +16,7 @@
         app:layoutDescription="@xml/textview_shown_scene"
         tools:context=".MainActivity">
 
-        <ScrollView
+        <androidx.core.widget.NestedScrollView
             android:id="@+id/scrollView"
             android:layout_width="0dp"
             android:layout_height="0dp"
@@ -42,6 +43,7 @@
                     app:layoutDescription="@xml/gathering_digital_things_scene">
 
                     <ImageView
+
                         android:id="@+id/logoImageView2"
                         android:layout_width="400dp"
                         android:layout_height="270dp"
@@ -54,7 +56,7 @@
 
                 </androidx.constraintlayout.motion.widget.MotionLayout>
             </LinearLayout>
-        </ScrollView>
+        </androidx.core.widget.NestedScrollView>
 
         <TextView
             android:id="@+id/textView"
@@ -108,6 +110,14 @@
 
 
             </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <include
+                layout="@layout/layout_intro_title"
+                android:id="@+id/introTitleLayout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="bottom"
+                app:layout_scrollFlags="scroll"/>
             <androidx.appcompat.widget.Toolbar
                 android:id="@+id/toolbar"
                 android:layout_width="match_parent"

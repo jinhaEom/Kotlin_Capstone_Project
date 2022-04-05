@@ -4,6 +4,7 @@
     <option name="filePathToZoomLevelMap">
       <map>
         <entry key="..\:/Users/umjin/capstone/anyfeeling/app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.17552083333333332" />
+        <entry key="..\:/Users/umjin/capstone/anyfeeling/app/src/main/res/drawable/background_intro_title.xml" value="0.21296296296296297" />
         <entry key="..\:/Users/umjin/capstone/anyfeeling/app/src/main/res/drawable/ic_baseline_library_music_24.xml" value="0.1703125" />
         <entry key="..\:/Users/umjin/capstone/anyfeeling/app/src/main/res/drawable/ic_baseline_settings_24.xml" value="0.1703125" />
         <entry key="..\:/Users/umjin/capstone/anyfeeling/app/src/main/res/drawable/ic_launcher_background.xml" value="0.14270833333333333" />
@@ -14,7 +15,7 @@
         <entry key="..\:/Users/umjin/capstone/anyfeeling/app/src/main/res/layout/activity_main.xml" value="0.2" />
         <entry key="..\:/Users/umjin/capstone/anyfeeling/app/src/main/res/layout/activity_signup.xml" value="0.24947916666666667" />
         <entry key="..\:/Users/umjin/capstone/anyfeeling/app/src/main/res/layout/fragment_firsttab.xml" value="0.24947916666666667" />
-        <entry key="..\:/Users/umjin/capstone/anyfeeling/app/src/main/res/layout/fragment_home.xml" value="0.11413043478260869" />
+        <entry key="..\:/Users/umjin/capstone/anyfeeling/app/src/main/res/layout/fragment_home.xml" value="0.1" />
         <entry key="..\:/Users/umjin/capstone/anyfeeling/app/src/main/res/layout/fragment_one.xml" value="0.24947916666666667" />
         <entry key="..\:/Users/umjin/capstone/anyfeeling/app/src/main/res/layout/fragment_secondtab.xml" value="0.24947916666666667" />
         <entry key="..\:/Users/umjin/capstone/anyfeeling/app/src/main/res/layout/fragment_two.xml" value="0.24947916666666667" />
