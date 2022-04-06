@@ -20,7 +20,7 @@
 
 
     <TextView
-        android:layout_margin="5dp"
+        android:layout_margin="5sp"
         android:textSize="20sp"
         android:textStyle="bold"
         android:textColor="@color/white"
@@ -33,19 +33,19 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="200dp" >
+        android:layout_height="200sp" >
 
         <androidx.cardview.widget.CardView
 
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_margin="10dp"
-            app:cardCornerRadius="30dp"
+            android:layout_margin="10sp"
+            app:cardCornerRadius="30sp"
             tools:ignore="MissingConstraints">
             <ImageView
                 android:id="@+id/menu_happy"
-                android:layout_width="160dp"
-                android:layout_height="160dp"
+                android:layout_width="160sp"
+                android:layout_height="160sp"
                 android:scaleType="fitXY"
                 android:src="@drawable/happy"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -57,7 +57,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Happy"
-                android:padding="5dp"
+                android:padding="5sp"
                 android:textColor="@color/white"
                 android:textSize="25sp"/>
         </androidx.cardview.widget.CardView>
@@ -65,14 +65,14 @@
         <androidx.cardview.widget.CardView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_margin="10dp"
-            app:cardCornerRadius="30dp"
+            android:layout_margin="10sp"
+            app:cardCornerRadius="30sp"
             tools:ignore="MissingConstraints">
 
             <ImageView
                 android:id="@+id/menu_sad"
-                android:layout_width="160dp"
-                android:layout_height="160dp"
+                android:layout_width="160sp"
+                android:layout_height="160sp"
                 android:scaleType="fitXY"
                 android:src="@drawable/sad" />
 
@@ -80,7 +80,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Sad"
-                android:padding="5dp"
+                android:padding="5sp"
                 android:textColor="@color/white"
                 android:textSize="25sp"/>
         </androidx.cardview.widget.CardView>

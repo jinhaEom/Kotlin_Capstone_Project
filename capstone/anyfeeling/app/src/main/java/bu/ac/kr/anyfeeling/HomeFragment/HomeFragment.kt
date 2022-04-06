@@ -1,6 +1,7 @@
 package bu.ac.kr.anyfeeling.homeFragment
 
 
+import android.content.Context
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -50,7 +51,7 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
 
 
         binding.scrollView.viewTreeObserver.addOnScrollChangedListener {
-            if (binding.scrollView.scrollY > 150f.dpToPx(this).toInt()) {
+            if (binding.scrollView.scrollY > 150f) {
                 if (isGatheringMotionAnimating.not()) {
                     binding.gatheringDigitalThingsLayout.transitionToEnd()
                     binding.textViewShownMotionLayout.transitionToEnd()
@@ -79,16 +80,9 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
 
         }
 
-
-
-
-
-
-
         return binding.root
 
     }
-
 
 
 
