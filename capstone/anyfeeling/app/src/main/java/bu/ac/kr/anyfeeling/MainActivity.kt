@@ -57,7 +57,7 @@ class MainActivity : AppCompatActivity() {
 
     /*private fun fragmenthome3(binding: FragmentHomeBinding){
         binding.appBar.addOnOffsetChangedListener(AppBarLayout.OnOffsetChangedListener { appBarLayout, verticalOffset ->
-            val topPadding = 300f.dpToPx(context = HomeFragment())
+            val topPadding = 300f.spToPx(context = HomeFragment())
             val realAlphaScrollHeight = appBarLayout.measuredHeight - appBarLayout.totalScrollRange
             val abstractOffset = abs(verticalOffset)
 
@@ -98,7 +98,7 @@ class MainActivity : AppCompatActivity() {
 }
 
 
-fun Float.dpToPx(context: Context): Float =
+fun Float.spToPx(context: Context): Float =
     TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP,this,context.resources.displayMetrics)
 
 fun Activity.makeStatusBarTransparent(context: HomeFragment){

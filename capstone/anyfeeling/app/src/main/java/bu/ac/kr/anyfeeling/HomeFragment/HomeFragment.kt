@@ -13,7 +13,7 @@ import androidx.fragment.app.Fragment
 import bu.ac.kr.anyfeeling.MainActivity
 import bu.ac.kr.anyfeeling.R
 import bu.ac.kr.anyfeeling.databinding.FragmentHomeBinding
-import bu.ac.kr.anyfeeling.dpToPx
+import bu.ac.kr.anyfeeling.spToPx
 
 
 class HomeFragment : Fragment(R.layout.fragment_home) {
