@@ -13,9 +13,11 @@
 - viewPager 이용해보기
 <div style="margin:0 auto;">
 <img src="https://user-images.githubusercontent.com/84216838/159652169-d785612a-0222-4d25-8c06-e3c95594957a.png" width=200 height=350/>
-&nbsp
-<img src="https://user-images.githubusercontent.com/84216838/159922966-fdfd9fd4-a169-4769-9d31-a68f26d09a8b.png" width=200 height=350/>
 &nbsp;
-<img src="https://user-images.githubusercontent.com/84216838/160552900-14f05b42-7e4c-4c7e-b880-11c3822df007.png" width=200 height=350/>
+<img src="https://user-images.githubusercontent.com/84216838/162563586-3bea1ecb-3200-42a3-b0ef-a79227241a98.png" width=200 height=350/>
+&nbsp;
+<img src="https://user-images.githubusercontent.com/84216838/162563591-4a6dfe90-2de2-4864-b56b-8953dc3d1dc5.png" width=200 height=350/>
+&nbsp;
+<img src="https://user-images.githubusercontent.com/84216838/162563722-b023d651-f8d8-4f2f-bf64-e4ccccd6540d.png" width=200 height=350/>
 </div>
 <video src="https://user-images.githubusercontent.com/84216838/161705492-95181506-ae16-44b5-ba01-649d0f4606da.mp4" width=200px height=350px />
