@@ -14,21 +14,15 @@
    >
 
 
-<LinearLayout
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content">
-
-
     <TextView
         android:layout_margin="5sp"
         android:textSize="20sp"
         android:textStyle="bold"
+        android:layout_gravity="center"
         android:textColor="@color/white"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="기분에 따른 곡을 선택해보세요!"/>
-</LinearLayout>
-
 
 
     <LinearLayout
@@ -106,12 +100,12 @@
                     android:layout_width="160sp"
                     android:layout_height="160sp"
                     android:scaleType="fitXY"
-                    android:src="@drawable/happy" />
+                    android:src="@drawable/romantic" />
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Happy"
+                    android:text="Romantic"
                     android:padding="5sp"
                     android:textColor="@color/white"
                     android:textSize="25sp"/>
@@ -128,14 +122,14 @@
                     android:layout_width="160sp"
                     android:layout_height="160sp"
                     android:scaleType="fitXY"
-                    android:src="@drawable/happy" />
+                    android:src="@drawable/gloomy" />
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Happy"
+                    android:text="Gloomy"
                     android:padding="5sp"
-                    android:textColor="@color/white"
+                    android:textColor="#222222"
                     android:textSize="25sp"/>
             </androidx.cardview.widget.CardView>
 
@@ -155,12 +149,12 @@
                 android:layout_width="160sp"
                 android:layout_height="160sp"
                 android:scaleType="fitXY"
-                android:src="@drawable/happy" />
+                android:src="@drawable/sexy" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Happy"
+                android:text="Sexy"
                 android:padding="5sp"
                 android:textColor="@color/white"
                 android:textSize="25sp"/>
@@ -177,12 +171,12 @@
                 android:layout_width="160sp"
                 android:layout_height="160sp"
                 android:scaleType="fitXY"
-                android:src="@drawable/happy" />
+                android:src="@drawable/relaxing" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Happy"
+                android:text="Relaxing"
                 android:padding="5sp"
                 android:textColor="@color/white"
                 android:textSize="25sp"/>
@@ -203,12 +197,12 @@
                 android:layout_width="160sp"
                 android:layout_height="160sp"
                 android:scaleType="fitXY"
-                android:src="@drawable/happy" />
+                android:src="@drawable/dark" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Happy"
+                android:text="Dark"
                 android:padding="5sp"
                 android:textColor="@color/white"
                 android:textSize="25sp"/>
@@ -225,12 +219,12 @@
                 android:layout_width="160sp"
                 android:layout_height="160sp"
                 android:scaleType="fitXY"
-                android:src="@drawable/happy" />
+                android:src="@drawable/funny" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Happy"
+                android:text="Funny"
                 android:padding="5sp"
                 android:textColor="@color/white"
                 android:textSize="25sp"/>
