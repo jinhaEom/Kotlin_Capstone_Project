@@ -9,4 +9,5 @@ class HappyActivity:AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.happy_layout)
     }
+
 }
