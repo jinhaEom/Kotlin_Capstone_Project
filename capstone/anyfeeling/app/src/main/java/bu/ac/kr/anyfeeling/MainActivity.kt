@@ -12,7 +12,7 @@ import android.view.WindowManager
 
 
 import androidx.fragment.app.Fragment
-import bu.ac.kr.anyfeeling.firstFragment.FirstFragment
+import bu.ac.kr.anyfeeling.first.FirstFragment
 import bu.ac.kr.anyfeeling.homeFragment.HomeFragment
 import bu.ac.kr.anyfeeling.secondFragment.SecondFragment
 import bu.ac.kr.anyfeeling.databinding.ActivityMainBinding
