@@ -9,8 +9,8 @@
 ## First TODO LIST
 - 회원가입 시 Detail 요소(비밀번호확인) 수정
 - 페이스북 로그인 구현
-- main 화면 디자인 구상
-- viewPager 이용해보기
+- 노래 재생 구현
+- 설정 탭 구현
 <div style="margin:0 auto;">
 <img src="https://user-images.githubusercontent.com/84216838/159652169-d785612a-0222-4d25-8c06-e3c95594957a.png" width=200 height=350/>
 &nbsp;
@@ -18,6 +18,6 @@
 &nbsp;
 <img src="https://user-images.githubusercontent.com/84216838/162563591-4a6dfe90-2de2-4864-b56b-8953dc3d1dc5.png" width=200 height=350/>
 &nbsp;
-<img src="https://user-images.githubusercontent.com/84216838/162563722-b023d651-f8d8-4f2f-bf64-e4ccccd6540d.png" width=200 height=350/>
+<img src="https://user-images.githubusercontent.com/84216838/163111013-cefebcb5-88df-4d34-80e3-64f8bcefde93.png" width=200 height=350/>
 </div>
 <video src="https://user-images.githubusercontent.com/84216838/161705492-95181506-ae16-44b5-ba01-649d0f4606da.mp4" width=200px height=350px />

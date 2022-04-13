@@ -7,7 +7,7 @@
 <LinearLayout
     android:id="@+id/fragment1"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="0dp"
     android:background="#393939"
     android:orientation="vertical"
     android:padding="29sp"
@@ -26,8 +26,9 @@
 
 
     <LinearLayout
+        android:layout_weight="1"
         android:layout_width="match_parent"
-        android:layout_height="200sp" >
+        android:layout_height="0dp" >
 
         <androidx.cardview.widget.CardView
 
@@ -60,8 +61,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_margin="10sp"
-            app:cardCornerRadius="30sp"
-            tools:ignore="MissingConstraints">
+            app:cardCornerRadius="30sp">
 
             <ImageView
                 android:id="@+id/menu_sad"
@@ -79,15 +79,11 @@
                 android:textSize="25sp"/>
         </androidx.cardview.widget.CardView>
 
-
-
-
-
-
     </LinearLayout>
         <LinearLayout
+            android:layout_weight="1"
             android:layout_width="match_parent"
-            android:layout_height="200sp">
+            android:layout_height="0dp">
             <androidx.cardview.widget.CardView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -135,8 +131,9 @@
 
         </LinearLayout>
     <LinearLayout
+        android:layout_weight="1"
         android:layout_width="match_parent"
-        android:layout_height="200sp">
+        android:layout_height="0dp">
         <androidx.cardview.widget.CardView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -183,8 +180,9 @@
         </androidx.cardview.widget.CardView>
     </LinearLayout>
     <LinearLayout
+        android:layout_weight="1"
         android:layout_width="match_parent"
-        android:layout_height="200sp">
+        android:layout_height="0dp">
         <androidx.cardview.widget.CardView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

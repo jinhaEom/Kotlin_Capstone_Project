@@ -4,6 +4,8 @@
     package="bu.ac.kr.anyfeeling">
     <uses-permission android:name="android.permission.INTERNET"/>
     <meta-data android:name="android.max_aspect" android:value="2.1" />
+    <supports-screens android:largeScreens="true" android:anyDensity="true"/>
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -25,6 +27,8 @@
         <activity android:name=".LoginActivity"/>
         <activity android:name=".SignUpActivity"/>
         <activity android:name=".first.HappyActivity"/>
+
+
 
 
 
