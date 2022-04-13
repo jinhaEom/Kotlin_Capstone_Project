@@ -1,12 +1,13 @@
-/*
 package bu.ac.kr.anyfeeling
 import bu.ac.kr.anyfeeling.service.MusicModel
 
 data class PlayerModel(
     private val playMusicList: List<MusicModel> = emptyList(),
     var currentPosition: Int = -1,
+/*
     var isWatchingPlayListView: Boolean = true
-) {
+*/
+) /*{
 
     fun getAdapterModels(): List<MusicModel> {
         return playMusicList.mapIndexed { index, musicModel ->

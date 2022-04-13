@@ -1,12 +1,15 @@
-package bu.ac.kr.anyfeeling
+package bu.ac.kr.anyfeeling.first
 
 import android.os.Bundle
 import android.view.View
+import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
+import bu.ac.kr.anyfeeling.PlayListAdapter
+import bu.ac.kr.anyfeeling.R
+import bu.ac.kr.anyfeeling.databinding.FragmentPlayerBinding
 import bu.ac.kr.anyfeeling.service.MusicDto
 import bu.ac.kr.anyfeeling.service.MusicService
-import bu.ac.kr.anyfeeling.databinding.FragmentPlayerBinding
 import bu.ac.kr.anyfeeling.service.mapper
 import retrofit2.Call
 import retrofit2.Callback
@@ -14,20 +17,22 @@ import retrofit2.Response
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 
-class HappyFragment: Fragment(R.layout.fragment_player) {
+
+class HappyActivity: AppCompatActivity(R.layout.fragment_player) {
 
     private var binding : FragmentPlayerBinding? = null
     private var isWatchingPlayListView = true
     private lateinit var playListAdapter: PlayListAdapter
 
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-
-        val fragmentPlayerBinding = FragmentPlayerBinding.bind(view)
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        val fragmentPlayerBinding = FragmentPlayerBinding.inflate(layoutInflater)
         binding = fragmentPlayerBinding
         initPlayListButton(fragmentPlayerBinding)
         getVideoListFromServer()
     }
+
+
 
     private fun initPlayListButton(fragmentPlayerBinding: FragmentPlayerBinding) {
         fragmentPlayerBinding.playlistImageView.setOnClickListener {
@@ -58,8 +63,7 @@ class HappyFragment: Fragment(R.layout.fragment_player) {
                             }
                         }
 
-                        override fun onFailure(call: Call<MusicDto>, t: Throwable) {
-                        }
+                        override fun onFailure(call: Call<MusicDto>, t: Throwable) {}
 
                     })
             }
