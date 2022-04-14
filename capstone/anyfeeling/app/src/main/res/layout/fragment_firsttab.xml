@@ -9,7 +9,7 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="0dp"
         android:orientation="vertical">
 
         <RelativeLayout
@@ -26,7 +26,8 @@
                 android:src="@drawable/ncs_logo1" />
 
             <TextView
-                android:id="@+id/testdashboard"
+                android:padding="10dp"
+                android:id="@+id/dashboard"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="자신만의 음악을 골라보세요."
@@ -41,6 +42,7 @@
         <GridLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+
             android:alignmentMode="alignMargins"
             android:columnCount="2"
             android:columnOrderPreserved="false"
@@ -103,8 +105,8 @@
                     android:padding="16dp">
 
                     <ImageView
-                        android:layout_width="110dp"
-                        android:layout_height="110dp"
+                        android:layout_width="110sp"
+                        android:layout_height="120sp"
                         android:src="@drawable/sad" />
 
                     <TextView
@@ -335,8 +337,10 @@
 
         </GridLayout>
 
-
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="35dp"/>
     </LinearLayout>
-    <view
+
 
 </ScrollView>
