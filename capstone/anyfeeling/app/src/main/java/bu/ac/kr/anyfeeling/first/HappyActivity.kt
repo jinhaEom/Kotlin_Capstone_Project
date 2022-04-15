@@ -26,10 +26,14 @@ class HappyActivity: AppCompatActivity(R.layout.fragment_player) {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
+
         val fragmentPlayerBinding = FragmentPlayerBinding.inflate(layoutInflater)
         binding = fragmentPlayerBinding
+        setContentView(binding!!.root)
         initPlayListButton(fragmentPlayerBinding)
         getVideoListFromServer()
+
     }
 
 
@@ -39,10 +43,11 @@ class HappyActivity: AppCompatActivity(R.layout.fragment_player) {
 
             //todo 만약 서버에서 데이터가 다 불려오지 않은 상태일때
             fragmentPlayerBinding.playerViewGroup.isVisible = isWatchingPlayListView
-            fragmentPlayerBinding.playerViewGroup.isVisible = isWatchingPlayListView.not()
+            fragmentPlayerBinding.playListViewGroup.isVisible = isWatchingPlayListView.not()
 
             isWatchingPlayListView = !isWatchingPlayListView
         }
+        return
     }
 
 
