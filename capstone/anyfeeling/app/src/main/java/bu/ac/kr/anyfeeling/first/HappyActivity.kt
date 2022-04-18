@@ -2,10 +2,13 @@ package bu.ac.kr.anyfeeling.first
 
 import android.os.Bundle
 import android.view.View
+import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
+import androidx.recyclerview.widget.LinearLayoutManager
 import bu.ac.kr.anyfeeling.PlayListAdapter
+import bu.ac.kr.anyfeeling.PlayerModel
 import bu.ac.kr.anyfeeling.R
 import bu.ac.kr.anyfeeling.databinding.FragmentPlayerBinding
 import bu.ac.kr.anyfeeling.service.MusicDto
@@ -20,6 +23,7 @@ import retrofit2.converter.gson.GsonConverterFactory
 
 class HappyActivity: AppCompatActivity(R.layout.fragment_player) {
 
+    private var model : PlayerModel = PlayerModel()
     private var binding : FragmentPlayerBinding? = null
     private var isWatchingPlayListView = true
     private lateinit var playListAdapter: PlayListAdapter
@@ -32,10 +36,21 @@ class HappyActivity: AppCompatActivity(R.layout.fragment_player) {
         binding = fragmentPlayerBinding
         setContentView(binding!!.root)
         initPlayListButton(fragmentPlayerBinding)
+        initRecyclerView(fragmentPlayerBinding)
         getVideoListFromServer()
 
     }
 
+    private fun initRecyclerView(fragmentPlayerBinding: FragmentPlayerBinding) {
+        playListAdapter = PlayListAdapter {
+            // todo 음악 재생
+        }
+        fragmentPlayerBinding.playListRecyclerView.apply{
+            adapter = playListAdapter
+            layoutManager = LinearLayoutManager(context)
+        }
+
+    }
 
 
     private fun initPlayListButton(fragmentPlayerBinding: FragmentPlayerBinding) {
@@ -62,9 +77,10 @@ class HappyActivity: AppCompatActivity(R.layout.fragment_player) {
                     .enqueue(object: Callback<MusicDto>{
                         override fun onResponse(call: Call<MusicDto>, response: Response<MusicDto>) {
                             response.body()?.let{
-                                it.musics.mapIndexed{ index, musicEntity ->
+                                val modelList = it.musics.mapIndexed{ index, musicEntity ->
                                     musicEntity.mapper(index.toLong())
                                 }
+                                playListAdapter.submitList(modelList)
                             }
                         }
 
