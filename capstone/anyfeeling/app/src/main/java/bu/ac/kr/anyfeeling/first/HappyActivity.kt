@@ -68,7 +68,7 @@ class HappyActivity: AppCompatActivity(R.layout.fragment_player) {
     }
 
     private fun initPlayView(fragmentPlayerBinding: FragmentPlayerBinding) {
-        this?.let{
+        this.let{
             player = SimpleExoPlayer.Builder(this).build()
         }
 
@@ -142,7 +142,7 @@ class HappyActivity: AppCompatActivity(R.layout.fragment_player) {
             }
     }
     private fun setMusicList(modelList: List<MusicModel>){
-        this?.let{
+        this.let{
             player?.addMediaItems(modelList.map { musicModel ->
                 MediaItem.Builder()
                     .setMediaId(musicModel.id.toString())
