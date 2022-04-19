@@ -1,13 +1,12 @@
 package bu.ac.kr.anyfeeling
 import bu.ac.kr.anyfeeling.service.MusicModel
 
+//음악이 다음 트랙으로 넘어갈 때
 data class PlayerModel(
     private val playMusicList: List<MusicModel> = emptyList(),
     var currentPosition: Int = -1,
-/*
     var isWatchingPlayListView: Boolean = true
-*/
-) /*{
+) {
 
     fun getAdapterModels(): List<MusicModel> {
         return playMusicList.mapIndexed { index, musicModel ->
@@ -45,4 +44,4 @@ data class PlayerModel(
 
 
 
-}*/
+}
