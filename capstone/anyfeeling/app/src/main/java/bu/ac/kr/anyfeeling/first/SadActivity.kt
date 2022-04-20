@@ -4,13 +4,14 @@ import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.isVisible
 import androidx.recyclerview.widget.LinearLayoutManager
-import bu.ac.kr.anyfeeling.adapter.PlayListAdapter
 import bu.ac.kr.anyfeeling.PlayerModel
 import bu.ac.kr.anyfeeling.R
+import bu.ac.kr.anyfeeling.adapter.SadPlayListAdapter
 import bu.ac.kr.anyfeeling.databinding.FragmentPlayerBinding
 import bu.ac.kr.anyfeeling.service.MusicDto
 import bu.ac.kr.anyfeeling.service.MusicModel
 import bu.ac.kr.anyfeeling.service.MusicService.MusicService
+import bu.ac.kr.anyfeeling.service.MusicService.SadMusicService
 import bu.ac.kr.anyfeeling.service.mapper
 import com.google.android.exoplayer2.MediaItem
 import com.google.android.exoplayer2.Player
@@ -21,29 +22,23 @@ import retrofit2.Response
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 
-
-class HappyActivity: AppCompatActivity(R.layout.fragment_player) {
+class SadActivity : AppCompatActivity(R.layout.fragment_player){
 
     private var model : PlayerModel = PlayerModel()
-    private var binding : FragmentPlayerBinding? = null
     private var player : SimpleExoPlayer?= null
-    private lateinit var playListAdapter: PlayListAdapter
+    private lateinit var SadPlayListAdapter: SadPlayListAdapter
+
+
+    private var binding : FragmentPlayerBinding? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
+        setContentView(binding!!.root)
 
         val fragmentPlayerBinding = FragmentPlayerBinding.inflate(layoutInflater)
         binding = fragmentPlayerBinding
-        setContentView(binding!!.root)
-        initPlayView(fragmentPlayerBinding)
-        initPlayListButton(fragmentPlayerBinding)
-        initPlayControlButtons(fragmentPlayerBinding)
-        initRecyclerView(fragmentPlayerBinding)
-        getVideoListFromServer()
 
     }
-
     private fun initPlayControlButtons(fragmentPlayerBinding: FragmentPlayerBinding) {
         fragmentPlayerBinding.playControlImageView.setOnClickListener {
             val player = this.player?: return@setOnClickListener
@@ -91,7 +86,7 @@ class HappyActivity: AppCompatActivity(R.layout.fragment_player) {
 
                     val newIndex = mediaItem?.mediaId ?: return
                     model.currentPosition = newIndex.toInt()
-                    playListAdapter.submitList(model.getAdapterModels())
+                    SadPlayListAdapter.submitList(model.getAdapterModels())
                 }
             })
 
@@ -99,11 +94,11 @@ class HappyActivity: AppCompatActivity(R.layout.fragment_player) {
     }
 
     private fun initRecyclerView(fragmentPlayerBinding: FragmentPlayerBinding) {
-        playListAdapter = PlayListAdapter {
+        SadPlayListAdapter = SadPlayListAdapter {
             playMusic(it)
         }
         fragmentPlayerBinding.playListRecyclerView.apply{
-            adapter = playListAdapter
+            adapter = SadPlayListAdapter
             layoutManager = LinearLayoutManager(context)
         }
 
@@ -128,16 +123,16 @@ class HappyActivity: AppCompatActivity(R.layout.fragment_player) {
             .baseUrl("https://run.mocky.io")
             .addConverterFactory(GsonConverterFactory.create())
             .build()
-        retrofit.create(MusicService::class.java)
+        retrofit.create(SadMusicService::class.java)
             .also {
                 it.listMusics()
-                    .enqueue(object: Callback<MusicDto>{
+                    .enqueue(object: Callback<MusicDto> {
                         override fun onResponse(call: Call<MusicDto>, response: Response<MusicDto>) {
                             response.body()?.let{ musicDto ->
 
                                 model = musicDto.mapper()
                                 setMusicList(model.getAdapterModels())
-                                playListAdapter.submitList(model.getAdapterModels())
+                                SadPlayListAdapter.submitList(model.getAdapterModels())
                             }
                         }
 

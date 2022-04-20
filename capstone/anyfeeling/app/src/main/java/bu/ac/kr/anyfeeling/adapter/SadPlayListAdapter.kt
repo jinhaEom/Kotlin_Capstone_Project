@@ -1,4 +1,4 @@
-package bu.ac.kr.anyfeeling
+package bu.ac.kr.anyfeeling.adapter
 
 import android.graphics.Color
 import android.view.LayoutInflater
@@ -9,10 +9,11 @@ import android.widget.TextView
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
+import bu.ac.kr.anyfeeling.R
 import bu.ac.kr.anyfeeling.service.MusicModel
 import com.bumptech.glide.Glide
 
-class PlayListAdapter(private val callback :(MusicModel)-> Unit) : ListAdapter<MusicModel, PlayListAdapter.ViewHolder>(
+class SadPlayListAdapter(private val callback :(MusicModel)-> Unit) : ListAdapter<MusicModel, SadPlayListAdapter.ViewHolder>(
     diffUtil
 ) {
 
@@ -42,7 +43,7 @@ class PlayListAdapter(private val callback :(MusicModel)-> Unit) : ListAdapter<M
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         return ViewHolder(
-            LayoutInflater.from(parent.context).inflate(R.layout.happy_music, parent, false)
+            LayoutInflater.from(parent.context).inflate(R.layout.sad_layout, parent, false)
         )
     }
 
