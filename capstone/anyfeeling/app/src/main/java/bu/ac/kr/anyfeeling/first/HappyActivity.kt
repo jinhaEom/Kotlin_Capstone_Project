@@ -12,6 +12,7 @@ import bu.ac.kr.anyfeeling.service.MusicDto
 import bu.ac.kr.anyfeeling.service.MusicModel
 import bu.ac.kr.anyfeeling.service.MusicService.MusicService
 import bu.ac.kr.anyfeeling.service.mapper
+import com.bumptech.glide.Glide
 import com.google.android.exoplayer2.MediaItem
 import com.google.android.exoplayer2.Player
 import com.google.android.exoplayer2.SimpleExoPlayer
@@ -91,6 +92,7 @@ class HappyActivity: AppCompatActivity(R.layout.fragment_player) {
 
                     val newIndex = mediaItem?.mediaId ?: return
                     model.currentPosition = newIndex.toInt()
+                    updatePlayerView(model.currentMusicModel())
                     playListAdapter.submitList(model.getAdapterModels())
                 }
             })
@@ -162,5 +164,16 @@ class HappyActivity: AppCompatActivity(R.layout.fragment_player) {
         player?.seekTo(model.currentPosition,0)
         player?.play()
     }
+    private fun updatePlayerView(currentMusicModel: MusicModel?){
+        currentMusicModel ?: return
 
+        binding?.let{ binding ->
+            binding.trackTextView.text = currentMusicModel.track
+            binding.artistTextView.text = currentMusicModel.track
+            Glide.with(binding.coverImageView.context)
+                .load(currentMusicModel.coverUrl)
+                .into(binding.coverImageView)
+
+        }
+    }
 }

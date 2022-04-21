@@ -56,12 +56,10 @@ class SadPlayListAdapter(private val callback :(MusicModel)-> Unit) : ListAdapte
     companion object{
         val diffUtil = object : DiffUtil.ItemCallback<MusicModel>() {
             override fun areItemsTheSame(oldItem: MusicModel, newItem: MusicModel): Boolean {
-                //안에 있는 컨텐츠들을 비교하는 것
                 return oldItem.id == newItem.id
             }
 
             override fun areContentsTheSame(oldItem: MusicModel, newItem: MusicModel): Boolean {
-                //ID 값을 비교하는것
                 return oldItem == newItem
             }
 

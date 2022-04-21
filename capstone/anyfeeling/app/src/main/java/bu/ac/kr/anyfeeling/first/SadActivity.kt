@@ -11,11 +11,11 @@ import bu.ac.kr.anyfeeling.databinding.FragmentPlayerBinding
 import bu.ac.kr.anyfeeling.service.MusicDto
 import bu.ac.kr.anyfeeling.service.MusicModel
 import bu.ac.kr.anyfeeling.service.MusicService.MusicService
-import bu.ac.kr.anyfeeling.service.MusicService.SadMusicService
 import bu.ac.kr.anyfeeling.service.mapper
 import com.google.android.exoplayer2.MediaItem
 import com.google.android.exoplayer2.Player
 import com.google.android.exoplayer2.SimpleExoPlayer
+import org.json.JSONObject
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -26,7 +26,7 @@ class SadActivity : AppCompatActivity(R.layout.fragment_player){
 
     private var model : PlayerModel = PlayerModel()
     private var player : SimpleExoPlayer?= null
-    private lateinit var SadPlayListAdapter: SadPlayListAdapter
+    private lateinit var sadPlayListAdapter: SadPlayListAdapter
 
 
     private var binding : FragmentPlayerBinding? = null
@@ -37,6 +37,11 @@ class SadActivity : AppCompatActivity(R.layout.fragment_player){
 
         val fragmentPlayerBinding = FragmentPlayerBinding.inflate(layoutInflater)
         binding = fragmentPlayerBinding
+        initPlayView(fragmentPlayerBinding)
+        initPlayListButton(fragmentPlayerBinding)
+        initPlayControlButtons(fragmentPlayerBinding)
+        initRecyclerView(fragmentPlayerBinding)
+        getVideoListFromServer()
 
     }
     private fun initPlayControlButtons(fragmentPlayerBinding: FragmentPlayerBinding) {
@@ -86,7 +91,7 @@ class SadActivity : AppCompatActivity(R.layout.fragment_player){
 
                     val newIndex = mediaItem?.mediaId ?: return
                     model.currentPosition = newIndex.toInt()
-                    SadPlayListAdapter.submitList(model.getAdapterModels())
+                    sadPlayListAdapter.submitList(model.getAdapterModels())
                 }
             })
 
@@ -94,11 +99,11 @@ class SadActivity : AppCompatActivity(R.layout.fragment_player){
     }
 
     private fun initRecyclerView(fragmentPlayerBinding: FragmentPlayerBinding) {
-        SadPlayListAdapter = SadPlayListAdapter {
+        sadPlayListAdapter = SadPlayListAdapter {
             playMusic(it)
         }
         fragmentPlayerBinding.playListRecyclerView.apply{
-            adapter = SadPlayListAdapter
+            adapter = sadPlayListAdapter
             layoutManager = LinearLayoutManager(context)
         }
 
@@ -118,25 +123,34 @@ class SadActivity : AppCompatActivity(R.layout.fragment_player){
     }
 
 
-    private fun getVideoListFromServer(){
+    private fun getVideoListFromServer() {
+
         val retrofit = Retrofit.Builder()
             .baseUrl("https://run.mocky.io")
             .addConverterFactory(GsonConverterFactory.create())
             .build()
-        retrofit.create(SadMusicService::class.java)
+        retrofit.create(MusicService::class.java)
             .also {
                 it.listMusics()
-                    .enqueue(object: Callback<MusicDto> {
-                        override fun onResponse(call: Call<MusicDto>, response: Response<MusicDto>) {
-                            response.body()?.let{ musicDto ->
+                    .enqueue(object : Callback<MusicDto> {
+                        override fun onResponse(
+                            call: Call<MusicDto>,
+                            response: Response<MusicDto>
+                        ) {
+                            response.body()?.let{
 
-                                model = musicDto.mapper()
+/*
+                                model = MusicDto.mapper()
+*/
                                 setMusicList(model.getAdapterModels())
-                                SadPlayListAdapter.submitList(model.getAdapterModels())
+                                sadPlayListAdapter.submitList(model.getAdapterModels())
                             }
                         }
 
-                        override fun onFailure(call: Call<MusicDto>, t: Throwable) {}
+                        override fun onFailure(call: Call<MusicDto>, t: Throwable) {
+
+                        }
+
 
                     })
             }
@@ -159,3 +173,4 @@ class SadActivity : AppCompatActivity(R.layout.fragment_player){
     }
 
 }
+
