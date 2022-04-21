@@ -4,6 +4,7 @@ import android.app.Activity
 import android.os.Bundle
 import android.os.Handler
 import android.view.View
+import android.widget.SeekBar
 import androidx.activity.result.ActivityResultCallback
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
@@ -53,9 +54,25 @@ class HappyActivity: AppCompatActivity(R.layout.fragment_player) {
         initPlayListButton(fragmentPlayerBinding)
         initPlayControlButtons(fragmentPlayerBinding)
         initRecyclerView(fragmentPlayerBinding)
+        initSeekBar(fragmentPlayerBinding)
         getVideoListFromServer()
 
 
+    }
+
+    private fun initSeekBar(fragmentPlayerBinding: FragmentPlayerBinding) {
+        fragmentPlayerBinding.playerSeekBar.setOnSeekBarChangeListener(object: SeekBar.OnSeekBarChangeListener{
+            override fun onProgressChanged(seekBar: SeekBar?, progress: Int, fromUser: Boolean) {}
+
+            override fun onStartTrackingTouch(seekBar: SeekBar?) {}
+
+            override fun onStopTrackingTouch(seekBar: SeekBar) {
+                player?.seekTo((seekBar.progress * 1000).toLong())
+
+            }
+
+        })
+        fragmentPlayerBinding.playListSeekBar.isEnabled = false
     }
 
     private fun initPlayControlButtons(fragmentPlayerBinding: FragmentPlayerBinding) {
@@ -232,4 +249,20 @@ class HappyActivity: AppCompatActivity(R.layout.fragment_player) {
 
         }
     }
+    override fun onStop() {
+        super.onStop()
+
+        player?.pause()
+        myHandler?.removeCallbacks(updateSeekRunnable)
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+
+        binding = null
+        player?.release()
+        myHandler?.removeCallbacks(updateSeekRunnable)
+
+    }
+
 }
