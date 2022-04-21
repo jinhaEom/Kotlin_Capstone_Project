@@ -1,12 +1,20 @@
 package bu.ac.kr.anyfeeling.first
 
+import android.app.Activity
 import android.os.Bundle
+import android.os.Handler
+import android.view.View
+import androidx.activity.result.ActivityResultCallback
+import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.os.HandlerCompat.postDelayed
+import androidx.core.view.ViewCompat
 import androidx.core.view.isVisible
 import androidx.recyclerview.widget.LinearLayoutManager
 import bu.ac.kr.anyfeeling.adapter.PlayListAdapter
 import bu.ac.kr.anyfeeling.PlayerModel
 import bu.ac.kr.anyfeeling.R
+import bu.ac.kr.anyfeeling.databinding.ActivityMainBinding
 import bu.ac.kr.anyfeeling.databinding.FragmentPlayerBinding
 import bu.ac.kr.anyfeeling.service.MusicDto
 import bu.ac.kr.anyfeeling.service.MusicModel
@@ -21,14 +29,18 @@ import retrofit2.Callback
 import retrofit2.Response
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
+import java.util.concurrent.TimeUnit
 
 
 class HappyActivity: AppCompatActivity(R.layout.fragment_player) {
-
+    private var myHandler = Handler()
     private var model : PlayerModel = PlayerModel()
     private var binding : FragmentPlayerBinding? = null
     private var player : SimpleExoPlayer?= null
     private lateinit var playListAdapter: PlayListAdapter
+    private val updateSeekRunnable = Runnable {
+        updateSeek()
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -42,6 +54,7 @@ class HappyActivity: AppCompatActivity(R.layout.fragment_player) {
         initPlayControlButtons(fragmentPlayerBinding)
         initRecyclerView(fragmentPlayerBinding)
         getVideoListFromServer()
+
 
     }
 
@@ -87,6 +100,12 @@ class HappyActivity: AppCompatActivity(R.layout.fragment_player) {
                     }
                 }
 
+                override fun onPlaybackStateChanged(state: Int) {
+                    super.onPlaybackStateChanged(state)
+
+                    updateSeek()
+                }
+
                 override fun onMediaItemTransition(mediaItem: MediaItem?, reason: Int) {
                     super.onMediaItemTransition(mediaItem, reason)
 
@@ -97,6 +116,43 @@ class HappyActivity: AppCompatActivity(R.layout.fragment_player) {
                 }
             })
 
+        }
+    }
+
+    private fun updateSeek() {
+        val player = this.player ?: return
+        val duration = if (player.duration >= 0) player.duration else 0
+        val position = player.currentPosition
+
+        updateSeekUi(duration, position)
+
+
+        val state = player.playbackState
+
+        myHandler.removeCallbacks(updateSeekRunnable)
+        if (state != Player.STATE_IDLE && state != Player.STATE_ENDED) { //재생중이 아니거나 재생이 끝난경우가 아니면
+            myHandler.postDelayed(updateSeekRunnable, 1000)
+        }
+    }
+
+
+
+
+    private fun updateSeekUi(duration:Long, position: Long){
+        binding?.let{ binding ->
+
+            binding.playListSeekBar.max = (duration / 1000).toInt() //밀리세컨드라서 1000단위
+            binding.playListSeekBar.progress = (position / 1000).toInt()
+
+            binding.playerSeekBar.max = (duration / 1000).toInt()
+            binding.playerSeekBar.progress = (position / 1000).toInt()
+
+            binding.playTimeTextView.text = String.format("%02d:%02d",
+                TimeUnit.MINUTES.convert(position , TimeUnit.MILLISECONDS),
+                (position/1000) % 60)
+            binding.totalTimeTextView.text = String.format("%02d:%02d",
+                TimeUnit.MINUTES.convert(duration , TimeUnit.MILLISECONDS),
+                (duration/1000) % 60)
         }
     }
 
