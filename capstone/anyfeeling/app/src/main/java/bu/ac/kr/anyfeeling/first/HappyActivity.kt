@@ -72,7 +72,9 @@ class HappyActivity: AppCompatActivity(R.layout.fragment_player) {
             }
 
         })
-        fragmentPlayerBinding.playListSeekBar.isEnabled = false
+        fragmentPlayerBinding.playListSeekBar.setOnTouchListener{v, event ->
+            false
+        }
     }
 
     private fun initPlayControlButtons(fragmentPlayerBinding: FragmentPlayerBinding) {
