@@ -1,5 +1,6 @@
 package bu.ac.kr.anyfeeling.service
 
+import com.google.gson.annotations.JsonAdapter
 import com.google.gson.annotations.SerializedName
 
 data class MusicEntity(

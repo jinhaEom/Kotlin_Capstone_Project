@@ -11,6 +11,8 @@ import bu.ac.kr.anyfeeling.databinding.FragmentPlayerBinding
 import bu.ac.kr.anyfeeling.service.MusicDto
 import bu.ac.kr.anyfeeling.service.MusicModel
 import bu.ac.kr.anyfeeling.service.MusicService.MusicService
+import bu.ac.kr.anyfeeling.service.MusicService.SadMusicService
+import bu.ac.kr.anyfeeling.service.SadMusicDto
 import bu.ac.kr.anyfeeling.service.mapper
 import com.google.android.exoplayer2.MediaItem
 import com.google.android.exoplayer2.Player
@@ -129,25 +131,25 @@ class SadActivity : AppCompatActivity(R.layout.fragment_player){
             .baseUrl("https://run.mocky.io")
             .addConverterFactory(GsonConverterFactory.create())
             .build()
-        retrofit.create(MusicService::class.java)
+        retrofit.create(SadMusicService::class.java)
             .also {
-                it.listMusics()
-                    .enqueue(object : Callback<MusicDto> {
+                it.sadlistMusics()
+                    .enqueue(object : Callback<SadMusicDto> {
                         override fun onResponse(
-                            call: Call<MusicDto>,
-                            response: Response<MusicDto>
+                            call: Call<SadMusicDto>,
+                            response: Response<SadMusicDto>
                         ) {
-                            response.body()?.let{
+                            response.body()?.let{ SadMusicDto ->
 
-/*
-                                model = MusicDto.mapper()
-*/
+
+                                model = SadMusicDto.mapper()
+
                                 setMusicList(model.getAdapterModels())
                                 sadPlayListAdapter.submitList(model.getAdapterModels())
                             }
                         }
 
-                        override fun onFailure(call: Call<MusicDto>, t: Throwable) {
+                        override fun onFailure(call: Call<SadMusicDto>, t: Throwable) {
 
                         }
 
