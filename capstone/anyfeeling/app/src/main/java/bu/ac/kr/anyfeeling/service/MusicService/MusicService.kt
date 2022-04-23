@@ -10,3 +10,8 @@ interface MusicService {
     fun listMusics() : Call<MusicDto>
 
 }
+interface SadMusicService{
+    @GET("/v3/5230bab4-070a-4317-85cd-07eed12bbc6d")
+
+    fun listMusics2() : Call<MusicDto>
+}

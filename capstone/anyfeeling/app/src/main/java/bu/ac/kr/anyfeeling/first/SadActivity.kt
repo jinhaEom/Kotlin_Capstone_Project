@@ -1,51 +1,83 @@
 package bu.ac.kr.anyfeeling.first
 
+import android.app.Activity
 import android.os.Bundle
+import android.os.Handler
+import android.view.View
+import android.widget.SeekBar
+import androidx.activity.result.ActivityResultCallback
+import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.os.HandlerCompat.postDelayed
+import androidx.core.view.ViewCompat
 import androidx.core.view.isVisible
 import androidx.recyclerview.widget.LinearLayoutManager
+import bu.ac.kr.anyfeeling.adapter.PlayListAdapter
 import bu.ac.kr.anyfeeling.PlayerModel
 import bu.ac.kr.anyfeeling.R
-import bu.ac.kr.anyfeeling.adapter.SadPlayListAdapter
+import bu.ac.kr.anyfeeling.databinding.ActivityMainBinding
 import bu.ac.kr.anyfeeling.databinding.FragmentPlayerBinding
 import bu.ac.kr.anyfeeling.service.MusicDto
 import bu.ac.kr.anyfeeling.service.MusicModel
 import bu.ac.kr.anyfeeling.service.MusicService.MusicService
 import bu.ac.kr.anyfeeling.service.MusicService.SadMusicService
-import bu.ac.kr.anyfeeling.service.SadMusicDto
 import bu.ac.kr.anyfeeling.service.mapper
+import com.bumptech.glide.Glide
 import com.google.android.exoplayer2.MediaItem
 import com.google.android.exoplayer2.Player
 import com.google.android.exoplayer2.SimpleExoPlayer
-import org.json.JSONObject
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
+import java.util.concurrent.TimeUnit
 
-class SadActivity : AppCompatActivity(R.layout.fragment_player){
 
+class SadActivity: AppCompatActivity(R.layout.fragment_player) {
+    private var myHandler = Handler()
     private var model : PlayerModel = PlayerModel()
-    private var player : SimpleExoPlayer?= null
-    private lateinit var sadPlayListAdapter: SadPlayListAdapter
-
-
     private var binding : FragmentPlayerBinding? = null
+    private var player : SimpleExoPlayer?= null
+    private lateinit var playListAdapter: PlayListAdapter
+    private val updateSeekRunnable = Runnable {
+        updateSeek()
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(binding!!.root)
+
 
         val fragmentPlayerBinding = FragmentPlayerBinding.inflate(layoutInflater)
         binding = fragmentPlayerBinding
+        setContentView(binding!!.root)
         initPlayView(fragmentPlayerBinding)
         initPlayListButton(fragmentPlayerBinding)
         initPlayControlButtons(fragmentPlayerBinding)
         initRecyclerView(fragmentPlayerBinding)
+        initSeekBar(fragmentPlayerBinding)
         getVideoListFromServer()
 
+
     }
+
+    private fun initSeekBar(fragmentPlayerBinding: FragmentPlayerBinding) {
+        fragmentPlayerBinding.playerSeekBar.setOnSeekBarChangeListener(object: SeekBar.OnSeekBarChangeListener{
+            override fun onProgressChanged(seekBar: SeekBar?, progress: Int, fromUser: Boolean) {}
+
+            override fun onStartTrackingTouch(seekBar: SeekBar?) {}
+
+            override fun onStopTrackingTouch(seekBar: SeekBar) {
+                player?.seekTo((seekBar.progress * 1000).toLong())
+
+            }
+
+        })
+        fragmentPlayerBinding.playListSeekBar.setOnTouchListener{v, event ->
+            false
+        }
+    }
+
     private fun initPlayControlButtons(fragmentPlayerBinding: FragmentPlayerBinding) {
         fragmentPlayerBinding.playControlImageView.setOnClickListener {
             val player = this.player?: return@setOnClickListener
@@ -88,24 +120,68 @@ class SadActivity : AppCompatActivity(R.layout.fragment_player){
                     }
                 }
 
+                override fun onPlaybackStateChanged(state: Int) {
+                    super.onPlaybackStateChanged(state)
+
+                    updateSeek()
+                }
+
                 override fun onMediaItemTransition(mediaItem: MediaItem?, reason: Int) {
                     super.onMediaItemTransition(mediaItem, reason)
 
                     val newIndex = mediaItem?.mediaId ?: return
                     model.currentPosition = newIndex.toInt()
-                    sadPlayListAdapter.submitList(model.getAdapterModels())
+                    updatePlayerView(model.currentMusicModel())
+                    playListAdapter.submitList(model.getAdapterModels())
                 }
             })
 
         }
     }
 
+    private fun updateSeek() {
+        val player = this.player ?: return
+        val duration = if (player.duration >= 0) player.duration else 0
+        val position = player.currentPosition
+
+        updateSeekUi(duration, position)
+
+
+        val state = player.playbackState
+
+        myHandler.removeCallbacks(updateSeekRunnable)
+        if (state != Player.STATE_IDLE && state != Player.STATE_ENDED) { //재생중이 아니거나 재생이 끝난경우가 아니면
+            myHandler.postDelayed(updateSeekRunnable, 1000)
+        }
+    }
+
+
+
+
+    private fun updateSeekUi(duration:Long, position: Long){
+        binding?.let{ binding ->
+
+            binding.playListSeekBar.max = (duration / 1000).toInt() //밀리세컨드라서 1000단위
+            binding.playListSeekBar.progress = (position / 1000).toInt()
+
+            binding.playerSeekBar.max = (duration / 1000).toInt()
+            binding.playerSeekBar.progress = (position / 1000).toInt()
+
+            binding.playTimeTextView.text = String.format("%02d:%02d",
+                TimeUnit.MINUTES.convert(position , TimeUnit.MILLISECONDS),
+                (position/1000) % 60)
+            binding.totalTimeTextView.text = String.format("%02d:%02d",
+                TimeUnit.MINUTES.convert(duration , TimeUnit.MILLISECONDS),
+                (duration/1000) % 60)
+        }
+    }
+
     private fun initRecyclerView(fragmentPlayerBinding: FragmentPlayerBinding) {
-        sadPlayListAdapter = SadPlayListAdapter {
+        playListAdapter = PlayListAdapter {
             playMusic(it)
         }
         fragmentPlayerBinding.playListRecyclerView.apply{
-            adapter = sadPlayListAdapter
+            adapter = playListAdapter
             layoutManager = LinearLayoutManager(context)
         }
 
@@ -125,34 +201,25 @@ class SadActivity : AppCompatActivity(R.layout.fragment_player){
     }
 
 
-    private fun getVideoListFromServer() {
-
+    private fun getVideoListFromServer(){
         val retrofit = Retrofit.Builder()
             .baseUrl("https://run.mocky.io")
             .addConverterFactory(GsonConverterFactory.create())
             .build()
         retrofit.create(SadMusicService::class.java)
             .also {
-                it.sadlistMusics()
-                    .enqueue(object : Callback<SadMusicDto> {
-                        override fun onResponse(
-                            call: Call<SadMusicDto>,
-                            response: Response<SadMusicDto>
-                        ) {
-                            response.body()?.let{ SadMusicDto ->
+                it.listMusics2()
+                    .enqueue(object: Callback<MusicDto>{
+                        override fun onResponse(call: Call<MusicDto>, response: Response<MusicDto>) {
+                            response.body()?.let{ musicDto ->
 
-
-                                model = SadMusicDto.mapper()
-
+                                model = musicDto.mapper()
                                 setMusicList(model.getAdapterModels())
-                                sadPlayListAdapter.submitList(model.getAdapterModels())
+                                playListAdapter.submitList(model.getAdapterModels())
                             }
                         }
 
-                        override fun onFailure(call: Call<SadMusicDto>, t: Throwable) {
-
-                        }
-
+                        override fun onFailure(call: Call<MusicDto>, t: Throwable) {}
 
                     })
             }
@@ -173,6 +240,32 @@ class SadActivity : AppCompatActivity(R.layout.fragment_player){
         player?.seekTo(model.currentPosition,0)
         player?.play()
     }
+    private fun updatePlayerView(currentMusicModel: MusicModel?){
+        currentMusicModel ?: return
+
+        binding?.let{ binding ->
+            binding.trackTextView.text = currentMusicModel.track
+            binding.artistTextView.text = currentMusicModel.track
+            Glide.with(binding.coverImageView.context)
+                .load(currentMusicModel.coverUrl)
+                .into(binding.coverImageView)
+
+        }
+    }
+    override fun onStop() {
+        super.onStop()
+
+        player?.pause()
+        myHandler?.removeCallbacks(updateSeekRunnable)
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+
+        binding = null
+        player?.release()
+        myHandler?.removeCallbacks(updateSeekRunnable)
+
+    }
 
 }
-

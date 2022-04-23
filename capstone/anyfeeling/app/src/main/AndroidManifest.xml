@@ -28,15 +28,6 @@
         <activity android:name=".first.HappyActivity"/>
         <activity android:name=".first.SadActivity"/>
 
-
-
-
-
-
-
-
-
-
     </application>
 
 </manifest>

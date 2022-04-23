@@ -1,7 +1,6 @@
 package bu.ac.kr.anyfeeling.service
 
 import bu.ac.kr.anyfeeling.PlayerModel
-import com.google.android.exoplayer2.Player
 
 fun MusicEntity.mapper(id: Long): MusicModel =
     MusicModel(
@@ -13,17 +12,13 @@ fun MusicEntity.mapper(id: Long): MusicModel =
     )
 
 
+
 fun MusicDto.mapper(): PlayerModel =
     PlayerModel(
         playMusicList = musics.mapIndexed{ index, musicEntity ->
             musicEntity.mapper(index.toLong())
         }
     )
-fun SadMusicDto.mapper() : PlayerModel =
-    PlayerModel(
-        playMusicList = sadmusic.mapIndexed{ index, musicEntity ->
-            musicEntity.mapper(index.toLong())
-        }
-    )
+
 
 
