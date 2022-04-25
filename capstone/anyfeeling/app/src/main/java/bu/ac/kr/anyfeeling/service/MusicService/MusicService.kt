@@ -25,3 +25,7 @@ interface GloomyMusicService{
     @GET("/v3/90d211cd-e835-44e8-8b7b-a5237c601af0")
     fun listMusics4() : Call<MusicDto>
 }
+interface SexyMusicService{
+    @GET("/v3/7f0740f5-2802-417e-a745-e697965a1724")
+    fun listMusics5() : Call<MusicDto>
+}

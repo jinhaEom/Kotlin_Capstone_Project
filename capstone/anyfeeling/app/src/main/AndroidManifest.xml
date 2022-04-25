@@ -29,6 +29,7 @@
         <activity android:name=".first.SadActivity"/>
         <activity android:name=".first.RomanticActivity"/>
         <activity android:name=".first.GloomyActivity"/>
+        <activity android:name=".first.SexyActivity"/>
 
     </application>
 
