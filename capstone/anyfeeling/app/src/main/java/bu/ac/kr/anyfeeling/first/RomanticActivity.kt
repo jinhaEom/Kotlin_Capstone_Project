@@ -35,6 +35,7 @@ class RomanticActivity: AppCompatActivity(R.layout.fragment_player) {
     private var binding : FragmentPlayerBinding? = null
     private var player : SimpleExoPlayer?= null
     private lateinit var playListAdapter: PlayListAdapter
+
     private val updateSeekRunnable = Runnable {
         updateSeek()
     }

@@ -17,7 +17,7 @@ interface SadMusicService{
 }
 
 interface RomanticMusicService{
-    @GET("/v3/88099bc5-6a88-40f7-a045-6095f4db693c")
+    @GET("/v3/35614017-dba8-48e4-94e5-5ee4a9b70a1f")
 
     fun listMusics3() : Call<MusicDto>
 }

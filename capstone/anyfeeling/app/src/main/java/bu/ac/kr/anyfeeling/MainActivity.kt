@@ -92,9 +92,6 @@ class MainActivity : AppCompatActivity() {
                     commitAllowingStateLoss()
                 }
         }
-
-
-
 }
 
 
