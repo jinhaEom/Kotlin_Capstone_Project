@@ -30,6 +30,10 @@ class FirstFragment : Fragment(R.layout.fragment_firsttab) {
             val intent = Intent(context, SadActivity::class.java)
             startActivity(intent)
         }
+        mBinding.menuRomantic.setOnClickListener {
+            val intent = Intent(context, RomanticActivity::class.java)
+            startActivity(intent)
+        }
 
 
         return mBinding.root

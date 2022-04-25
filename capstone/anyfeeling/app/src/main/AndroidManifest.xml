@@ -27,6 +27,7 @@
         <activity android:name=".SignUpActivity"/>
         <activity android:name=".first.HappyActivity"/>
         <activity android:name=".first.SadActivity"/>
+        <activity android:name=".first.RomanticActivity"/>
 
     </application>
 
