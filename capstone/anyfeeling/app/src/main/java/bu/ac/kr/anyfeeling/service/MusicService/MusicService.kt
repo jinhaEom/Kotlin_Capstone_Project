@@ -21,3 +21,7 @@ interface RomanticMusicService{
 
     fun listMusics3() : Call<MusicDto>
 }
+interface GloomyMusicService{
+    @GET("/v3/90d211cd-e835-44e8-8b7b-a5237c601af0")
+    fun listMusics4() : Call<MusicDto>
+}

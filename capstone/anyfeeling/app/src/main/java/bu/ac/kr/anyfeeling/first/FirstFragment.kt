@@ -34,6 +34,11 @@ class FirstFragment : Fragment(R.layout.fragment_firsttab) {
             val intent = Intent(context, RomanticActivity::class.java)
             startActivity(intent)
         }
+        mBinding.menuGloomy.setOnClickListener{
+            val intent = Intent(context, GloomyActivity::class.java)
+            startActivity(intent)
+        }
+
 
 
         return mBinding.root
