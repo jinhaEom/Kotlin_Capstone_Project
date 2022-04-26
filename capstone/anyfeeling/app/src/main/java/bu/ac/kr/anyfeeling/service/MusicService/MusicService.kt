@@ -33,3 +33,11 @@ interface RelaxingMusicService{
     @GET("/v3/9cd64e9e-7521-4ab3-a879-e1637666cda0")
     fun listMusics6() : Call<MusicDto>
 }
+interface DarkMusicService{
+    @GET("/v3/5884270a-9e56-4fde-8280-965ce0405075")
+    fun listMusics6() : Call<MusicDto>
+}
+interface FunnyMusicService{
+    @GET("/v3/fb6ca9e8-a4dd-4b83-905f-4c59ae65122a")
+    fun listMusics7() : Call<MusicDto>
+}

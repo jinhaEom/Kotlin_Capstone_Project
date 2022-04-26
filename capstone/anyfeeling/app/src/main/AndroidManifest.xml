@@ -31,6 +31,8 @@
         <activity android:name=".first.GloomyActivity"/>
         <activity android:name=".first.SexyActivity"/>
         <activity android:name=".first.RelaxingActivity"/>
+        <activity android:name=".first.DarkActivity"/>
+        <activity android:name=".first.FunnyActivity"/>
 
     </application>
 
