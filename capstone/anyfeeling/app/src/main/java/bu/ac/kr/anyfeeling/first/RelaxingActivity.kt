@@ -15,8 +15,6 @@ import bu.ac.kr.anyfeeling.databinding.FragmentPlayerBinding
 import bu.ac.kr.anyfeeling.service.MusicDto
 import bu.ac.kr.anyfeeling.service.MusicModel
 import bu.ac.kr.anyfeeling.service.MusicService.RelaxingMusicService
-import bu.ac.kr.anyfeeling.service.MusicService.RomanticMusicService
-import bu.ac.kr.anyfeeling.service.MusicService.SadMusicService
 import bu.ac.kr.anyfeeling.service.mapper
 import com.bumptech.glide.Glide
 import com.google.android.exoplayer2.MediaItem

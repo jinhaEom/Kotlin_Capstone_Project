@@ -28,11 +28,11 @@ import retrofit2.converter.gson.GsonConverterFactory
 import java.util.concurrent.TimeUnit
 
 
-class SadActivity: AppCompatActivity(R.layout.fragment_player) {
+class SadActivity : AppCompatActivity(R.layout.fragment_player) {
     private var myHandler = Handler()
-    private var model : PlayerModel = PlayerModel()
-    private var binding : FragmentPlayerBinding? = null
-    private var player : SimpleExoPlayer?= null
+    private var model: PlayerModel = PlayerModel()
+    private var binding: FragmentPlayerBinding? = null
+    private var player: SimpleExoPlayer? = null
     private lateinit var playListAdapter: PlayListAdapter
     private val updateSeekRunnable = Runnable {
         updateSeek()
@@ -56,7 +56,8 @@ class SadActivity: AppCompatActivity(R.layout.fragment_player) {
     }
 
     private fun initSeekBar(fragmentPlayerBinding: FragmentPlayerBinding) {
-        fragmentPlayerBinding.playerSeekBar.setOnSeekBarChangeListener(object: SeekBar.OnSeekBarChangeListener{
+        fragmentPlayerBinding.playerSeekBar.setOnSeekBarChangeListener(object :
+            SeekBar.OnSeekBarChangeListener {
             override fun onProgressChanged(seekBar: SeekBar?, progress: Int, fromUser: Boolean) {}
 
             override fun onStartTrackingTouch(seekBar: SeekBar?) {}
@@ -67,18 +68,18 @@ class SadActivity: AppCompatActivity(R.layout.fragment_player) {
             }
 
         })
-        fragmentPlayerBinding.playListSeekBar.setOnTouchListener{v, event ->
+        fragmentPlayerBinding.playListSeekBar.setOnTouchListener { v, event ->
             false
         }
     }
 
     private fun initPlayControlButtons(fragmentPlayerBinding: FragmentPlayerBinding) {
         fragmentPlayerBinding.playControlImageView.setOnClickListener {
-            val player = this.player?: return@setOnClickListener
+            val player = this.player ?: return@setOnClickListener
 
-            if(player.isPlaying){
+            if (player.isPlaying) {
                 player.pause()
-            }else{
+            } else {
                 player.play()
             }
         }
@@ -94,7 +95,7 @@ class SadActivity: AppCompatActivity(R.layout.fragment_player) {
     }
 
     private fun initPlayView(fragmentPlayerBinding: FragmentPlayerBinding) {
-        this.let{
+        this.let {
             player = SimpleExoPlayer.Builder(this).build()
         }
 
@@ -102,14 +103,14 @@ class SadActivity: AppCompatActivity(R.layout.fragment_player) {
 
         binding.let { binding ->
 
-            player?.addListener(object: Player.EventListener{
+            player?.addListener(object : Player.EventListener {
 
                 override fun onIsPlayingChanged(isPlaying: Boolean) {
                     //플레이어가 재생이 될때 or 일시정지될때 callback 으로 내려오는 함수
                     super.onIsPlayingChanged(isPlaying)
-                    if(isPlaying){
+                    if (isPlaying) {
                         binding?.playControlImageView?.setImageResource(R.drawable.ic_baseline_pause_24)
-                    }else{
+                    } else {
                         binding?.playControlImageView?.setImageResource(R.drawable.ic_baseline_play_arrow_24)
                     }
                 }
@@ -150,10 +151,8 @@ class SadActivity: AppCompatActivity(R.layout.fragment_player) {
     }
 
 
-
-
-    private fun updateSeekUi(duration:Long, position: Long){
-        binding?.let{ binding ->
+    private fun updateSeekUi(duration: Long, position: Long) {
+        binding?.let { binding ->
 
             binding.playListSeekBar.max = (duration / 1000).toInt() //밀리세컨드라서 1000단위
             binding.playListSeekBar.progress = (position / 1000).toInt()
@@ -161,12 +160,16 @@ class SadActivity: AppCompatActivity(R.layout.fragment_player) {
             binding.playerSeekBar.max = (duration / 1000).toInt()
             binding.playerSeekBar.progress = (position / 1000).toInt()
 
-            binding.playTimeTextView.text = String.format("%02d:%02d",
-                TimeUnit.MINUTES.convert(position , TimeUnit.MILLISECONDS),
-                (position/1000) % 60)
-            binding.totalTimeTextView.text = String.format("%02d:%02d",
-                TimeUnit.MINUTES.convert(duration , TimeUnit.MILLISECONDS),
-                (duration/1000) % 60)
+            binding.playTimeTextView.text = String.format(
+                "%02d:%02d",
+                TimeUnit.MINUTES.convert(position, TimeUnit.MILLISECONDS),
+                (position / 1000) % 60
+            )
+            binding.totalTimeTextView.text = String.format(
+                "%02d:%02d",
+                TimeUnit.MINUTES.convert(duration, TimeUnit.MILLISECONDS),
+                (duration / 1000) % 60
+            )
         }
     }
 
@@ -174,7 +177,7 @@ class SadActivity: AppCompatActivity(R.layout.fragment_player) {
         playListAdapter = PlayListAdapter {
             playMusic(it)
         }
-        fragmentPlayerBinding.playListRecyclerView.apply{
+        fragmentPlayerBinding.playListRecyclerView.apply {
             adapter = playListAdapter
             layoutManager = LinearLayoutManager(context)
         }
@@ -185,7 +188,7 @@ class SadActivity: AppCompatActivity(R.layout.fragment_player) {
     private fun initPlayListButton(fragmentPlayerBinding: FragmentPlayerBinding) {
         fragmentPlayerBinding.playlistImageView.setOnClickListener {
 
-            if(model.currentPosition == -1) return@setOnClickListener
+            if (model.currentPosition == -1) return@setOnClickListener
             fragmentPlayerBinding.playerViewGroup.isVisible = model.isWatchingPlayListView
             fragmentPlayerBinding.playListViewGroup.isVisible = model.isWatchingPlayListView.not()
 
@@ -195,7 +198,7 @@ class SadActivity: AppCompatActivity(R.layout.fragment_player) {
     }
 
 
-    private fun getVideoListFromServer(){
+    private fun getVideoListFromServer() {
         val retrofit = Retrofit.Builder()
             .baseUrl("https://run.mocky.io")
             .addConverterFactory(GsonConverterFactory.create())
@@ -203,9 +206,12 @@ class SadActivity: AppCompatActivity(R.layout.fragment_player) {
         retrofit.create(SadMusicService::class.java)
             .also {
                 it.listMusics2()
-                    .enqueue(object: Callback<MusicDto>{
-                        override fun onResponse(call: Call<MusicDto>, response: Response<MusicDto>) {
-                            response.body()?.let{ musicDto ->
+                    .enqueue(object : Callback<MusicDto> {
+                        override fun onResponse(
+                            call: Call<MusicDto>,
+                            response: Response<MusicDto>
+                        ) {
+                            response.body()?.let { musicDto ->
 
                                 model = musicDto.mapper()
                                 setMusicList(model.getAdapterModels())
@@ -218,8 +224,9 @@ class SadActivity: AppCompatActivity(R.layout.fragment_player) {
                     })
             }
     }
-    private fun setMusicList(modelList: List<MusicModel>){
-        this.let{
+
+    private fun setMusicList(modelList: List<MusicModel>) {
+        this.let {
             player?.addMediaItems(modelList.map { musicModel ->
                 MediaItem.Builder()
                     .setMediaId(musicModel.id.toString())
@@ -229,15 +236,17 @@ class SadActivity: AppCompatActivity(R.layout.fragment_player) {
             player?.prepare()
         }
     }
-    private fun playMusic(musicModel: MusicModel){
+
+    private fun playMusic(musicModel: MusicModel) {
         model.updateCurrentPosition(musicModel)
-        player?.seekTo(model.currentPosition,0)
+        player?.seekTo(model.currentPosition, 0)
         player?.play()
     }
-    private fun updatePlayerView(currentMusicModel: MusicModel?){
+
+    private fun updatePlayerView(currentMusicModel: MusicModel?) {
         currentMusicModel ?: return
 
-        binding?.let{ binding ->
+        binding?.let { binding ->
             binding.trackTextView.text = currentMusicModel.track
             binding.artistTextView.text = currentMusicModel.track
             Glide.with(binding.coverImageView.context)
@@ -246,6 +255,7 @@ class SadActivity: AppCompatActivity(R.layout.fragment_player) {
 
         }
     }
+
     override fun onStop() {
         super.onStop()
 

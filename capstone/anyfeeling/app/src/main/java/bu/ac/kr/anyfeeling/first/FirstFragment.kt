@@ -19,7 +19,7 @@ class FirstFragment : Fragment(R.layout.fragment_firsttab) {
     ): View {
         mBinding = FragmentFirsttabBinding.inflate(inflater, container, false)
 
-        mBinding.menuHappy.setOnClickListener(object :View.OnClickListener{
+        mBinding.menuHappy.setOnClickListener(object : View.OnClickListener {
             override fun onClick(v: View?) {
                 val intent = Intent(context, HappyActivity::class.java)
                 startActivity(intent)
@@ -34,11 +34,11 @@ class FirstFragment : Fragment(R.layout.fragment_firsttab) {
             val intent = Intent(context, RomanticActivity::class.java)
             startActivity(intent)
         }
-        mBinding.menuGloomy.setOnClickListener{
+        mBinding.menuGloomy.setOnClickListener {
             val intent = Intent(context, GloomyActivity::class.java)
             startActivity(intent)
         }
-        mBinding.menuSexy.setOnClickListener{
+        mBinding.menuSexy.setOnClickListener {
             val intent = Intent(context, SexyActivity::class.java)
             startActivity(intent)
         }
@@ -60,8 +60,6 @@ class FirstFragment : Fragment(R.layout.fragment_firsttab) {
 
         return mBinding.root
     }
-
-
 
 
 }

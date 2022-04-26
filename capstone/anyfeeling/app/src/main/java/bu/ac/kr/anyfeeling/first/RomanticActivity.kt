@@ -3,9 +3,7 @@ package bu.ac.kr.anyfeeling.first
 import android.os.Bundle
 import android.os.Handler
 import android.widget.SeekBar
-
 import androidx.appcompat.app.AppCompatActivity
-
 import androidx.core.view.isVisible
 import androidx.recyclerview.widget.LinearLayoutManager
 import bu.ac.kr.anyfeeling.adapter.PlayListAdapter
@@ -15,7 +13,6 @@ import bu.ac.kr.anyfeeling.databinding.FragmentPlayerBinding
 import bu.ac.kr.anyfeeling.service.MusicDto
 import bu.ac.kr.anyfeeling.service.MusicModel
 import bu.ac.kr.anyfeeling.service.MusicService.RomanticMusicService
-import bu.ac.kr.anyfeeling.service.MusicService.SadMusicService
 import bu.ac.kr.anyfeeling.service.mapper
 import com.bumptech.glide.Glide
 import com.google.android.exoplayer2.MediaItem

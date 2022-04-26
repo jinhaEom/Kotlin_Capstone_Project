@@ -1,21 +1,14 @@
 package bu.ac.kr.anyfeeling.first
 
-import android.app.Activity
 import android.os.Bundle
 import android.os.Handler
-import android.view.View
 import android.widget.SeekBar
-import androidx.activity.result.ActivityResultCallback
-import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.os.HandlerCompat.postDelayed
-import androidx.core.view.ViewCompat
 import androidx.core.view.isVisible
 import androidx.recyclerview.widget.LinearLayoutManager
 import bu.ac.kr.anyfeeling.adapter.PlayListAdapter
 import bu.ac.kr.anyfeeling.PlayerModel
 import bu.ac.kr.anyfeeling.R
-import bu.ac.kr.anyfeeling.databinding.ActivityMainBinding
 import bu.ac.kr.anyfeeling.databinding.FragmentPlayerBinding
 import bu.ac.kr.anyfeeling.service.MusicDto
 import bu.ac.kr.anyfeeling.service.MusicModel

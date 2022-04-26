@@ -24,8 +24,6 @@
             android:textColor="@color/white"
             android:textSize="20sp"
             android:textStyle="bold" />
-
-
     </LinearLayout>
 
     <View
@@ -80,8 +78,5 @@
 
 
     </LinearLayout>
-
-
-
 
 </androidx.constraintlayout.widget.ConstraintLayout>
