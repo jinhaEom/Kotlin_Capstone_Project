@@ -29,3 +29,7 @@ interface SexyMusicService{
     @GET("/v3/7f0740f5-2802-417e-a745-e697965a1724")
     fun listMusics5() : Call<MusicDto>
 }
+interface RelaxingMusicService{
+    @GET("/v3/9cd64e9e-7521-4ab3-a879-e1637666cda0")
+    fun listMusics6() : Call<MusicDto>
+}
