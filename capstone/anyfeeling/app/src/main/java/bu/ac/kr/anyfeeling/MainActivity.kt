@@ -31,6 +31,7 @@ class MainActivity : AppCompatActivity() {
 
 
 
+
             makeStatusBarTransparent(context = HomeFragment())
             /*val FirstFragment= FirstFragment()
         val SecondFragment = SecondFragment()
@@ -84,6 +85,7 @@ class MainActivity : AppCompatActivity() {
 
         }
     }*/
+
 
     private fun replaceFragment(fragment: Fragment) {
             supportFragmentManager.beginTransaction()
