@@ -1,3 +1,9 @@
 <resources>
     <string name="app_name">AnyFeeling</string>
+
+    <string name="facebook_app_id">1864024627320349</string>
+    <string name="fb_login_protocol_scheme">fb1864024627320349</string>
+    <string name="facebook_client_token">17ffa5af472ddd2b2d3328ffb09f960a</string>
+
+
 </resources>

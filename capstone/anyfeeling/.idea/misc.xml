@@ -3,6 +3,7 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Users/umjin/.gradle/caches/transforms-3/730d38f3acf32d5689ca3d304f85e4e5/transformed/jetified-facebook-share-4.42.0/res/drawable/com_facebook_button_send_background.xml" value="0.15104166666666666" />
         <entry key="..\:/Users/umjin/capstone/anyfeeling/app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.17552083333333332" />
         <entry key="..\:/Users/umjin/capstone/anyfeeling/app/src/main/res/drawable-v24/player_seek_background.xml" value="0.265625" />
         <entry key="..\:/Users/umjin/capstone/anyfeeling/app/src/main/res/drawable-v24/player_seek_thumb.xml" value="0.265625" />
@@ -23,7 +24,7 @@
         <entry key="..\:/Users/umjin/capstone/anyfeeling/app/src/main/res/drawable/round_background.xml" value="0.1" />
         <entry key="..\:/Users/umjin/capstone/anyfeeling/app/src/main/res/drawable/round_background_gray.xml" value="0.1" />
         <entry key="..\:/Users/umjin/capstone/anyfeeling/app/src/main/res/layout/activity_home.xml" value="0.1" />
-        <entry key="..\:/Users/umjin/capstone/anyfeeling/app/src/main/res/layout/activity_login.xml" value="0.264" />
+        <entry key="..\:/Users/umjin/capstone/anyfeeling/app/src/main/res/layout/activity_login.xml" value="0.10283687943262411" />
         <entry key="..\:/Users/umjin/capstone/anyfeeling/app/src/main/res/layout/activity_main.xml" value="0.2" />
         <entry key="..\:/Users/umjin/capstone/anyfeeling/app/src/main/res/layout/activity_signup.xml" value="0.24947916666666667" />
         <entry key="..\:/Users/umjin/capstone/anyfeeling/app/src/main/res/layout/dialog_layout.xml" value="0.4" />

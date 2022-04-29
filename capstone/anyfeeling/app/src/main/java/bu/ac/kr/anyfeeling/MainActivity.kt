@@ -32,6 +32,7 @@ class MainActivity : AppCompatActivity() {
 
 
 
+
             makeStatusBarTransparent(context = HomeFragment())
             /*val FirstFragment= FirstFragment()
         val SecondFragment = SecondFragment()

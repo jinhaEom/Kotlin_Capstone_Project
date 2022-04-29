@@ -2,8 +2,11 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     package="bu.ac.kr.anyfeeling">
-    <uses-permission android:name="android.permission.INTERNET"/>
-    <meta-data android:name="android.max_aspect" android:value="2.1" />
+
+    <uses-permission android:name="android.permission.INTERNET" />
+    <meta-data
+        android:name="android.max_aspect"
+        android:value="2.1" />
 
     <application
         android:allowBackup="true"
@@ -13,6 +16,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat.Light.NoActionBar"
         tools:ignore="ExtraText">
+
         <activity
             android:name=".IntroActivity"
             android:exported="true">
@@ -22,17 +26,39 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".MainActivity"/>
-        <activity android:name=".LoginActivity"/>
-        <activity android:name=".SignUpActivity"/>
-        <activity android:name=".first.HappyActivity"/>
-        <activity android:name=".first.SadActivity"/>
-        <activity android:name=".first.RomanticActivity"/>
-        <activity android:name=".first.GloomyActivity"/>
-        <activity android:name=".first.SexyActivity"/>
-        <activity android:name=".first.RelaxingActivity"/>
-        <activity android:name=".first.DarkActivity"/>
-        <activity android:name=".first.FunnyActivity"/>
+        <activity android:name=".MainActivity" />
+        <activity android:name=".LoginActivity" />
+        <activity android:name=".SignUpActivity" />
+        <activity android:name=".first.HappyActivity" />
+        <activity android:name=".first.SadActivity" />
+        <activity android:name=".first.RomanticActivity" />
+        <activity android:name=".first.GloomyActivity" />
+        <activity android:name=".first.SexyActivity" />
+        <activity android:name=".first.RelaxingActivity" />
+        <activity android:name=".first.DarkActivity" />
+        <activity android:name=".first.FunnyActivity" />
+
+        <meta-data
+            android:name="com.facebook.sdk.ApplicationId"
+            android:value="@string/facebook_app_id" />
+
+        <activity
+            android:name="com.facebook.FacebookActivity"
+            android:configChanges="keyboard|keyboardHidden|screenLayout|screenSize|orientation"
+            android:label="@string/app_name" />
+        <activity
+            android:name="com.facebook.CustomTabActivity"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+
+                <data android:scheme="@string/fb_login_protocol_scheme" />
+            </intent-filter>
+
+        </activity>
 
     </application>
 

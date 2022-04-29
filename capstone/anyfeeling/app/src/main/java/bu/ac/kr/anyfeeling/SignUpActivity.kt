@@ -12,7 +12,6 @@ import android.widget.Toast.makeText
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.widget.addTextChangedListener
 import com.facebook.appevents.suggestedevents.SuggestedEventsManager.isEnabled
-import com.facebook.internal.logging.monitor.Monitor.isEnabled
 import com.facebook.login.widget.LoginButton
 import com.google.android.material.snackbar.Snackbar
 
