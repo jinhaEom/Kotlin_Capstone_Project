@@ -7,7 +7,6 @@ import android.widget.EditText
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.facebook.*
-import com.facebook.appevents.AppEventsLogger
 import com.facebook.login.LoginResult
 import com.facebook.login.widget.LoginButton
 import com.google.firebase.auth.FacebookAuthProvider
@@ -16,9 +15,9 @@ import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
 
-class LoginActivity:AppCompatActivity() {
+class LoginActivity : AppCompatActivity() {
 
-    private lateinit var auth : FirebaseAuth
+    private lateinit var auth: FirebaseAuth
     private lateinit var callbackManager: CallbackManager
 
 
@@ -33,11 +32,10 @@ class LoginActivity:AppCompatActivity() {
         initFacebookLoginButton()
 
 
-
         val signUpButton = findViewById<Button>(R.id.signUpButton)
         // 회원가입 창으로
         signUpButton.setOnClickListener {
-            startActivity(Intent(this,SignUpActivity::class.java))
+            startActivity(Intent(this, SignUpActivity::class.java))
         }
 
         // 로그인 버튼
@@ -45,7 +43,7 @@ class LoginActivity:AppCompatActivity() {
         val emailEditText = findViewById<EditText>(R.id.emailEditText)
         val passwordEditText = findViewById<EditText>(R.id.passwordEditText)
         loginButton.setOnClickListener {
-            signIn(emailEditText.text.toString(),passwordEditText.text.toString())
+            signIn(emailEditText.text.toString(), passwordEditText.text.toString())
         }
 
     }
@@ -79,39 +77,45 @@ class LoginActivity:AppCompatActivity() {
                 }
         }
     }
-    private fun initFacebookLoginButton(){
+
+    private fun initFacebookLoginButton() {
         val facebookLoginButton = findViewById<LoginButton>(R.id.facebookLoginButton)
 
-        facebookLoginButton.setPermissions("email","public_profile")
-        facebookLoginButton.registerCallback(callbackManager,object : FacebookCallback<LoginResult>{
-            override fun onSuccess(result: LoginResult) {
-                val credential = FacebookAuthProvider.getCredential(result.accessToken.token)
-                auth.signInWithCredential(credential)
-                    .addOnCompleteListener(this@LoginActivity) { task ->
-                        if(task.isSuccessful){
-                            moveMainPage(auth?.currentUser)
+        facebookLoginButton.setPermissions("email", "public_profile")
+        facebookLoginButton.registerCallback(callbackManager,
+            object : FacebookCallback<LoginResult> {
+                override fun onSuccess(result: LoginResult) {
+                    val credential = FacebookAuthProvider.getCredential(result.accessToken.token)
+                    auth.signInWithCredential(credential)
+                        .addOnCompleteListener(this@LoginActivity) { task ->
+                            if (task.isSuccessful) {
+                                moveMainPage(auth?.currentUser)
 
-                        }else{
-                            Toast.makeText(this@LoginActivity,"페이스북 로그인에 실패했습니다.",Toast.LENGTH_SHORT).show()
+                            } else {
+                                Toast.makeText(
+                                    this@LoginActivity,
+                                    "페이스북 로그인에 실패했습니다.",
+                                    Toast.LENGTH_SHORT
+                                ).show()
+                            }
                         }
-                    }
-            }
+                }
 
-            override fun onCancel() {}
+                override fun onCancel() {}
 
-            override fun onError(error: FacebookException?) {
-                Toast.makeText(this@LoginActivity,"페이스북 로그인에 실패했습니다.",Toast.LENGTH_SHORT).show()
-            }
+                override fun onError(error: FacebookException?) {
+                    Toast.makeText(this@LoginActivity, "페이스북 로그인에 실패했습니다.", Toast.LENGTH_SHORT)
+                        .show()
+                }
 
-        })
+            })
     }
 
 
-
     // 유저정보 넘겨주고 메인 액티비티 호출
-    private fun gmoveMainPage(user: FirebaseUser?){
-        if( user!= null){
-            startActivity(Intent(this,MainActivity::class.java))
+    private fun moveMainPage(user: FirebaseUser?) {
+        if (user != null) {
+            startActivity(Intent(this, MainActivity::class.java))
             finish()
         }
     }
@@ -122,6 +126,7 @@ class LoginActivity:AppCompatActivity() {
         callbackManager.onActivityResult(requestCode, resultCode, data)
 
     }
+
     private fun handleSuccessLogin() {
         if (auth!!.currentUser == null) {
             Toast.makeText(this, "로그인에 실패했습니다.", Toast.LENGTH_SHORT).show()

@@ -1,7 +1,6 @@
 package bu.ac.kr.anyfeeling.homeFragment
 
 
-import android.content.Context
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -10,10 +9,8 @@ import android.view.ViewGroup
 import androidx.constraintlayout.motion.widget.MotionLayout
 import androidx.core.view.ViewCompat
 import androidx.fragment.app.Fragment
-import bu.ac.kr.anyfeeling.MainActivity
 import bu.ac.kr.anyfeeling.R
 import bu.ac.kr.anyfeeling.databinding.FragmentHomeBinding
-import bu.ac.kr.anyfeeling.spToPx
 
 
 class HomeFragment : Fragment(R.layout.fragment_home) {

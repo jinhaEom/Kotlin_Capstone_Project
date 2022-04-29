@@ -2,25 +2,16 @@ package bu.ac.kr.anyfeeling
 
 import android.content.Intent
 import android.os.Bundle
-import android.text.Editable
-import android.text.TextWatcher
-import android.view.View
 import android.widget.Button
 import android.widget.EditText
 import android.widget.Toast
-import android.widget.Toast.makeText
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.widget.addTextChangedListener
-import com.facebook.appevents.suggestedevents.SuggestedEventsManager.isEnabled
-import com.facebook.login.widget.LoginButton
-import com.google.android.material.snackbar.Snackbar
-
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
 
 class SignUpActivity : AppCompatActivity() {
-    private var auth: FirebaseAuth? =null
+    private var auth: FirebaseAuth? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
 
@@ -38,7 +29,7 @@ class SignUpActivity : AppCompatActivity() {
 
 
         signupOk.setOnClickListener {
-            createAccount(email.text.toString(),password.text.toString())
+            createAccount(email.text.toString(), password.text.toString())
         }
         /*if(password!=passwordCheck){
 
@@ -48,19 +39,19 @@ class SignUpActivity : AppCompatActivity() {
         }*/
 
         cancel()
-       /* password.addTextChangedListener(object : TextWatcher{
-            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
+        /* password.addTextChangedListener(object : TextWatcher{
+             override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
 
-            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
-                if(password.text.toString()==passwordCheck.text.toString()){
-                    LoginButton.isEnabled = true
+             override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
+                 if(password.text.toString()==passwordCheck.text.toString()){
+                     LoginButton.isEnabled = true
 
-                }
-            }
+                 }
+             }
 
-            override fun afterTextChanged(s: Editable?) {}
+             override fun afterTextChanged(s: Editable?) {}
 
-        })*/
+         })*/
 
 
     }
@@ -89,19 +80,15 @@ class SignUpActivity : AppCompatActivity() {
     }
 
 
-
-
     private fun cancel() {
-            val signupCancel = findViewById<Button>(R.id.signupCancel)
-            signupCancel.setOnClickListener {
-                val intent = Intent(this, LoginActivity::class.java)
-                startActivity(intent)
-            }
-
-
+        val signupCancel = findViewById<Button>(R.id.signupCancel)
+        signupCancel.setOnClickListener {
+            val intent = Intent(this, LoginActivity::class.java)
+            startActivity(intent)
         }
 
 
-
-
     }
+
+
+}
