@@ -18,9 +18,9 @@ import androidx.fragment.app.DialogFragment
 import androidx.fragment.app.Fragment
 import bu.ac.kr.anyfeeling.LoginActivity
 import bu.ac.kr.anyfeeling.R
-import bu.ac.kr.anyfeeling.databinding.DialogLayoutBinding
 import bu.ac.kr.anyfeeling.databinding.FragmentFirsttabBinding
 import bu.ac.kr.anyfeeling.databinding.FragmentSecondtabBinding
+import com.google.firebase.auth.FirebaseAuth
 
 class SecondFragment: DialogFragment(R.layout.fragment_secondtab)  {
     lateinit var binding: FragmentSecondtabBinding
@@ -39,6 +39,9 @@ class SecondFragment: DialogFragment(R.layout.fragment_secondtab)  {
                 .setPositiveButton("확인",
                 DialogInterface.OnClickListener{
                     dialog,id ->
+                    FirebaseAuth.getInstance().signOut()
+                    val intent = Intent(context,LoginActivity::class.java)
+                    startActivity(intent)
                 })
                 .setNegativeButton("취소",
                     DialogInterface.OnClickListener{

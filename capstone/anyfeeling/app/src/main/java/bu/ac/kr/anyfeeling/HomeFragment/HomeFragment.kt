@@ -51,7 +51,7 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
 
 
         binding.scrollView.viewTreeObserver.addOnScrollChangedListener {
-            if (binding.scrollView.scrollY > 150f) {
+            if (binding.scrollView.scrollY > 150) {
                 if (isGatheringMotionAnimating.not()) {
                     binding.gatheringDigitalThingsLayout.transitionToEnd()
                     binding.textViewShownMotionLayout.transitionToEnd()
