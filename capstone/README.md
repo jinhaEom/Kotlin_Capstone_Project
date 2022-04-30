@@ -8,11 +8,12 @@
 - 음악은 일반 가요가 아닌 ncs 음악을 전제로 한다.
 ## First TODO LIST
 - 회원가입 시 Detail 요소(비밀번호확인) 수정
-- 페이스북 로그인 구현
-- player 화면에서 노래재생 구현 및 기분마다 각기 다른 노래 삽입
-- 설정 탭 실구동 할 것
+
+- 설정 탭 실구동 할 것(공지사항, 개발자 정보)
 <div style="margin:0 auto;">
-<img src="https://user-images.githubusercontent.com/84216838/159652169-d785612a-0222-4d25-8c06-e3c95594957a.png" width=200 height=350/>
+<img src="https://user-images.githubusercontent.com/84216838/166097207-288aeda3-efb0-4c5c-a680-a70e9798f2b5.png" width=200 height=350/>
+&nbsp;
+<img src="https://user-images.githubusercontent.com/84216838/166097209-a33af028-3148-41e8-ace6-042e3af7cdcc.png" width=200 height=350/>
 &nbsp;
 <img src="https://user-images.githubusercontent.com/84216838/163390459-cee55ed9-c43e-42a3-ad2a-ccfa978a179a.png" width=200 height=350/>
 &nbsp;
@@ -24,4 +25,4 @@
 width=200 height=350/>
 <img src="https://user-images.githubusercontent.com/84216838/163111013-cefebcb5-88df-4d34-80e3-64f8bcefde93.png" width=200 height=350/>
 </div>
-<video src="https://user-images.githubusercontent.com/84216838/161705492-95181506-ae16-44b5-ba01-649d0f4606da.mp4" width=200px height=350px />
+<video src="https://user-images.githubusercontent.com/84216838/166097283-d87d39c0-30eb-479d-9de8-ec52b22df3bd.mp4" width=200px height=350px />
