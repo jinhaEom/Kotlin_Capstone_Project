@@ -4,13 +4,16 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#E4E4E4">
+    android:background="#232323">
 
-    <ImageView
-
-        android:layout_width="100dp"
+    <TextView
+        android:textColor="@color/white"
+        android:text="Any Feeling"
+        android:textSize="20sp"
+        android:gravity="center_horizontal"
+        android:textStyle="bold"
+        android:layout_width="match_parent"
         android:layout_height="100dp"
-        android:src="@drawable/appicon"
         app:layout_constraintBottom_toTopOf="@+id/emailEditText"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
@@ -26,6 +29,10 @@
         android:layout_marginTop="160dp"
         android:background="@drawable/loginbox"
         android:hint="이메일 주소"
+        android:textColorHint="@color/gray_aa"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:backgroundTint="#353535"
         android:paddingVertical="14dp"
         android:paddingLeft="10dp"
         android:paddingBottom="20dp"
@@ -37,6 +44,8 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <EditText
+        android:textColorHint="@color/gray_aa"
+
         android:id="@+id/passwordEditText"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
@@ -44,6 +53,9 @@
         android:layout_marginBottom="20dp"
         android:background="@drawable/loginbox"
         android:hint="비밀번호"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:backgroundTint="#353535"
         android:inputType="textPassword"
         android:paddingVertical="14dp"
         android:paddingLeft="10dp"
