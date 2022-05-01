@@ -40,6 +40,10 @@ class SecondFragment: DialogFragment(R.layout.fragment_secondtab)  {
                     })
             builder.show()
         }
+        binding.noticeTextView.setOnClickListener {
+            val intent = Intent(context,NotifyActivity::class.java)
+            startActivity(intent)
+        }
 
 
         return binding.root
