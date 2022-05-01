@@ -38,6 +38,7 @@
         <activity android:name=".first.DarkActivity" />
         <activity android:name=".first.FunnyActivity" />
         <activity android:name=".secondFragment.NotifyActivity"/>
+        <activity android:name=".secondFragment.IntroduceActivity"/>
 
         <meta-data
             android:name="com.facebook.sdk.ApplicationId"
