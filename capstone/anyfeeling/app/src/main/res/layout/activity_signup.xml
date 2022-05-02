@@ -86,7 +86,6 @@
         android:id="@+id/passwordCheck"
         android:layout_width="0dp"
         android:textColor="@color/gray_cc"
-
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="20dp"
         android:layout_marginVertical="10dp"
