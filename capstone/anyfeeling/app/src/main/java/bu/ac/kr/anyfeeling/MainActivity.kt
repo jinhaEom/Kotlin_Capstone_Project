@@ -2,13 +2,20 @@ package bu.ac.kr.anyfeeling
 
 
 import android.app.Activity
+import android.app.Notification
+import android.app.NotificationManager
 import android.content.Context
 import android.graphics.Color
+import android.media.MediaMetadata
+import android.media.session.MediaSession
+import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.provider.Settings.System.getString
 import android.util.TypedValue
 import android.view.View
 import android.view.WindowManager
+import androidx.core.app.NotificationCompat
 
 
 import androidx.fragment.app.Fragment
@@ -16,6 +23,7 @@ import bu.ac.kr.anyfeeling.first.FirstFragment
 import bu.ac.kr.anyfeeling.homeFragment.HomeFragment
 import bu.ac.kr.anyfeeling.secondFragment.SecondFragment
 import bu.ac.kr.anyfeeling.databinding.ActivityMainBinding
+import com.google.android.exoplayer2.util.NotificationUtil.createNotificationChannel
 import com.google.android.material.bottomnavigation.BottomNavigationView
 
 
