@@ -23,6 +23,7 @@
         tools:ignore="MissingConstraints" />
 
     <EditText
+        android:textColor="@color/gray_cc"
         android:id="@+id/emailEditText"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
@@ -45,7 +46,7 @@
 
     <EditText
         android:textColorHint="@color/gray_aa"
-
+        android:textColor="@color/gray_cc"
         android:id="@+id/passwordEditText"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
