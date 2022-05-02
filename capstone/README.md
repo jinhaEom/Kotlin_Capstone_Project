@@ -6,10 +6,10 @@
 - 사용자는 노래탭 에서 기분별 음악 리스트들을 선택하여 들을 수 있다.
 - 설정화면에서는 회원 로그아웃, 개발자 정보, 공지사항등을 확인 할 수 있다.
 - 음악은 일반 가요가 아닌 ncs 음악을 전제로 한다.
-## First TODO LIST
-- 회원가입 시 Detail 요소(비밀번호확인) 수정
+## TODO LIST
+- 페이스북 로그인(토큰 추가할 것)
+- Notification(mediaStyle) 추가 
 
-- 설정 탭 실구동 할 것(공지사항, 개발자 정보)
 <div style="margin:0 auto;">
 <img src="https://user-images.githubusercontent.com/84216838/166097207-288aeda3-efb0-4c5c-a680-a70e9798f2b5.png" width=200 height=350/>
 &nbsp;
