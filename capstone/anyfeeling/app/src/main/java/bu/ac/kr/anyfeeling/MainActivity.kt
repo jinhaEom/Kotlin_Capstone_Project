@@ -4,6 +4,7 @@ package bu.ac.kr.anyfeeling
 import android.annotation.SuppressLint
 import android.app.Activity
 import android.app.Notification
+import android.app.NotificationChannel
 import android.app.NotificationManager
 import android.content.Context
 import android.drm.DrmStore
@@ -23,6 +24,7 @@ import android.util.TypedValue
 import android.view.View
 import android.view.WindowManager
 import androidx.core.app.NotificationCompat
+import androidx.core.content.ContextCompat
 
 
 import androidx.fragment.app.Fragment
@@ -40,18 +42,35 @@ import com.google.android.material.bottomnavigation.BottomNavigationView
 class MainActivity : AppCompatActivity() {
 
     private val binding by lazy { ActivityMainBinding.inflate(layoutInflater) }
-    lateinit var playpause : Notification.Action
-    private lateinit var mediaSession: MediaSessionCompat
-    private lateinit var exoPlayer : SimpleExoPlayer
-    var btnActions: Array<Notification.Action?> = arrayOfNulls<Notification.Action>(3)
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
+        val builder = NotificationCompat.Builder(this,"MY_CHANNEL")
+            .setSmallIcon(R.drawable.appicon)
+            .setContentTitle("Any Feeling")
+            .setContentText("앱이 실행중입니다.")
+
+        if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.O){
+
+            val channel_id = "MY_CHANNEL"
+            val channel_name= "채널 이름"
+            val descriptionText="설명글"
+            val importance = NotificationManager.IMPORTANCE_DEFAULT
+            val channel = NotificationChannel(channel_id,channel_name,importance).apply {
+                description = descriptionText
+            }
+
+            val notificationManager : NotificationManager = getSystemService(
+                NOTIFICATION_SERVICE)as NotificationManager
+            notificationManager.createNotificationChannel(channel)
+            notificationManager.notify(1002,builder.build())
+        }
 
 
-        gc
+
+
 
 
 
@@ -120,67 +139,7 @@ class MainActivity : AppCompatActivity() {
                 commitAllowingStateLoss()
             }
     }
-    @SuppressLint("WrongConstant")
-    private fun getNotification(playbackState: Int):NotificationCompat.Builder{
 
-        val controller = mediaSession.controller
-        val mediaMetadata = controller.metadata
-        val description = mediaMetadata.description
-        val CHANNEL_ID = "AnyFeelingNoti"
-
-
-
-        if(playbackState == PlaybackStateCompat.STATE_PLAYING){
-            addAction(
-                NotificationCompat(
-                    R.drawable.ic_baseline_pause_24,
-                    getString("미미"),
-                    MediaButtonReceiver.buildMediaButtonPendingIntent(
-                        applicationContext, PlaybackStateCompat.ACTION_PLAY_PAUSE
-                    )
-                )
-            )
-        }else{
-
-        }
-        val previous =
-            Notification.Action.Builder(
-                R.drawable.ic_baseline_skip_previous_24,
-                getString(R.string.app_name),
-                MediaButtonReceiver.buildMediaButtonPendingIntent(
-                    this, PlaybackStateCompat.ACTION_SKIP_TO_PREVIOUS
-                )
-            ).build()
-        val next =
-            Notification.Action.Builder(
-                R.drawable.ic_baseline_skip_next_24,
-                getString(R.string.app_name),
-                MediaButtonReceiver.buildMediaButtonPendingIntent(
-                    this, PlaybackStateCompat.ACTION_SKIP_TO_NEXT
-                )
-            ).build()
-        if(playbackState == PlaybackStateCompat.STATE_PLAYING){
-            playpause =
-                Notification.Action.Builder(
-                    R.drawable.ic_baseline_play_arrow_24,
-                    getString(R.string.app_name),
-                    MediaButtonReceiver.buildMediaButtonPendingIntent(
-                        this,PlaybackStateCompat.ACTION_PLAY_PAUSE
-                    )
-                ).build()
-        }else{
-            playpause =
-                Notification.Action.Builder(
-                    R.drawable.ic_baseline_pause_24,
-                    getString(R.string.app_name),
-                    MediaButtonReceiver.buildMediaButtonPendingIntent(
-                        this,PlaybackStateCompat.ACTION_PLAY_PAUSE
-                    )
-                ).build()
-        }
-
-
-    }
 }
 
 

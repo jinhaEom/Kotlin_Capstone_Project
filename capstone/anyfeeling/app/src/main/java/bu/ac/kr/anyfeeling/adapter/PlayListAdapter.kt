@@ -1,11 +1,17 @@
 package bu.ac.kr.anyfeeling.adapter
 
+import android.app.NotificationChannel
+import android.app.NotificationManager
+import android.content.Context
 import android.graphics.Color
+import android.os.Build
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.core.app.NotificationCompat
+import androidx.core.content.ContextCompat.getSystemService
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
@@ -13,9 +19,8 @@ import bu.ac.kr.anyfeeling.R
 import bu.ac.kr.anyfeeling.service.MusicModel
 import com.bumptech.glide.Glide
 
-class PlayListAdapter(private val callback :(MusicModel)-> Unit) : ListAdapter<MusicModel, PlayListAdapter.ViewHolder>(
-    diffUtil
-) {
+class PlayListAdapter(private val callback :(MusicModel)-> Unit) : ListAdapter<MusicModel, PlayListAdapter.ViewHolder>(diffUtil)
+{
 
     inner class ViewHolder(private val view: View) : RecyclerView.ViewHolder(view) {
         fun bind(item: MusicModel) {
@@ -30,8 +35,14 @@ class PlayListAdapter(private val callback :(MusicModel)-> Unit) : ListAdapter<M
                 .load(item.coverUrl)
                 .into(coverImageView)
 
+
             if(item.isPlaying){
                 itemView.setBackgroundColor(Color.GRAY)
+
+
+
+
+
             }else{
                 itemView.setBackgroundColor(Color.TRANSPARENT)
             }
@@ -39,9 +50,11 @@ class PlayListAdapter(private val callback :(MusicModel)-> Unit) : ListAdapter<M
                 callback(item)
             }
         }
+
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
+
         return ViewHolder(
             LayoutInflater.from(parent.context).inflate(R.layout.item_music, parent, false)
         )
