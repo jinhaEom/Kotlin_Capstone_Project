@@ -66,7 +66,6 @@ class PlayListAdapter(private val callback :(MusicModel)-> Unit) : ListAdapter<M
 
         }
     }
-
     companion object{
         val diffUtil = object : DiffUtil.ItemCallback<MusicModel>() {
             override fun areItemsTheSame(oldItem: MusicModel, newItem: MusicModel): Boolean {

@@ -7,6 +7,7 @@ import android.app.Notification
 import android.app.NotificationChannel
 import android.app.NotificationManager
 import android.content.Context
+import android.content.Intent
 import android.drm.DrmStore
 import android.graphics.Color
 import android.media.MediaMetadata
@@ -48,7 +49,7 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
-        val builder = NotificationCompat.Builder(this,"MY_CHANNEL")
+        /*val builder = NotificationCompat.Builder(this,"MY_CHANNEL")
             .setSmallIcon(R.drawable.appicon)
             .setContentTitle("Any Feeling")
             .setContentText("앱이 실행중입니다.")
@@ -68,7 +69,16 @@ class MainActivity : AppCompatActivity() {
             notificationManager.createNotificationChannel(channel)
             notificationManager.notify(1002,builder.build())
 
+        }*/
+        val intent = Intent(this,MyService::class.java)
+        if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.O){
+            this.startForegroundService(
+                intent
+            )
+        }else{
+            this.startService(intent)
         }
+
 
 
 
