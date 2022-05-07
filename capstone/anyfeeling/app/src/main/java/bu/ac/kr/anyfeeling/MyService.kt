@@ -24,7 +24,7 @@ import java.net.URL
 
 class MyService : Service() {
 
-    private lateinit var mp: MediaPlayer
+    private var mp: MediaPlayer?= null
 
     override fun onBind(intent: Intent): IBinder {
         TODO("Return the communication channel to the service.")
@@ -45,19 +45,19 @@ class MyService : Service() {
 
             startForeground(111, notification)
 
-            mp.start()
+            mp?.start()
 
         }
 
     }
 
     override fun onStartCommand(intent: Intent?, flags: Int, startId: Int): Int {
-        mp.start()
+        mp?.start()
         return super.onStartCommand(intent, flags, startId)
     }
 
     override fun onDestroy() {
         super.onDestroy()
-        mp.stop()
+        mp?.stop()
     }
 }
