@@ -29,6 +29,7 @@ import androidx.core.content.ContextCompat
 
 import androidx.fragment.app.Fragment
 import androidx.media.session.MediaButtonReceiver
+import bu.ac.kr.anyfeeling.adapter.PlayListAdapter
 import bu.ac.kr.anyfeeling.first.FirstFragment
 import bu.ac.kr.anyfeeling.homeFragment.HomeFragment
 import bu.ac.kr.anyfeeling.secondFragment.SecondFragment
@@ -53,7 +54,7 @@ class MainActivity : AppCompatActivity() {
             .setContentText("앱이 실행중입니다.")
 
         if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.O){
-
+        //O 는 Oreo 버전의 약자로 Oreo버전 이후에는 channel을 설정해줘야함.
             val channel_id = "MY_CHANNEL"
             val channel_name= "채널 이름"
             val descriptionText="설명글"
@@ -66,6 +67,7 @@ class MainActivity : AppCompatActivity() {
                 NOTIFICATION_SERVICE)as NotificationManager
             notificationManager.createNotificationChannel(channel)
             notificationManager.notify(1002,builder.build())
+
         }
 
 

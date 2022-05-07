@@ -4,6 +4,7 @@
     package="bu.ac.kr.anyfeeling">
 
     <uses-permission android:name="android.permission.INTERNET" />
+
     <meta-data
         android:name="android.max_aspect"
         android:value="2.1" />
@@ -16,6 +17,10 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat.Light.NoActionBar"
         tools:ignore="ExtraText">
+        <service
+            android:name=".MyService"
+            android:enabled="true"
+            android:exported="true"></service>
 
         <activity
             android:name=".IntroActivity"
@@ -37,8 +42,8 @@
         <activity android:name=".first.RelaxingActivity" />
         <activity android:name=".first.DarkActivity" />
         <activity android:name=".first.FunnyActivity" />
-        <activity android:name=".secondFragment.NotifyActivity"/>
-        <activity android:name=".secondFragment.IntroduceActivity"/>
+        <activity android:name=".secondFragment.NotifyActivity" />
+        <activity android:name=".secondFragment.IntroduceActivity" />
 
         <meta-data
             android:name="com.facebook.sdk.ApplicationId"
@@ -59,9 +64,7 @@
 
                 <data android:scheme="@string/fb_login_protocol_scheme" />
             </intent-filter>
-
         </activity>
-
     </application>
 
 </manifest>

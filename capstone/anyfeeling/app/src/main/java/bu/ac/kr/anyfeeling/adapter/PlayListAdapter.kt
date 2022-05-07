@@ -2,7 +2,9 @@ package bu.ac.kr.anyfeeling.adapter
 
 import android.app.NotificationChannel
 import android.app.NotificationManager
+import android.app.Service
 import android.content.Context
+import android.content.Intent
 import android.graphics.Color
 import android.os.Build
 import android.view.LayoutInflater
@@ -12,9 +14,11 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.core.app.NotificationCompat
 import androidx.core.content.ContextCompat.getSystemService
+import androidx.core.content.ContextCompat.startForegroundService
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
+import bu.ac.kr.anyfeeling.MyService
 import bu.ac.kr.anyfeeling.R
 import bu.ac.kr.anyfeeling.service.MusicModel
 import com.bumptech.glide.Glide
@@ -39,10 +43,6 @@ class PlayListAdapter(private val callback :(MusicModel)-> Unit) : ListAdapter<M
             if(item.isPlaying){
                 itemView.setBackgroundColor(Color.GRAY)
 
-
-
-
-
             }else{
                 itemView.setBackgroundColor(Color.TRANSPARENT)
             }
@@ -66,6 +66,7 @@ class PlayListAdapter(private val callback :(MusicModel)-> Unit) : ListAdapter<M
 
         }
     }
+
     companion object{
         val diffUtil = object : DiffUtil.ItemCallback<MusicModel>() {
             override fun areItemsTheSame(oldItem: MusicModel, newItem: MusicModel): Boolean {
