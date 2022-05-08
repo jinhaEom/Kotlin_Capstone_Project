@@ -238,7 +238,7 @@ class RomanticActivity: AppCompatActivity(R.layout.fragment_player) {
 
         binding?.let{ binding ->
             binding.trackTextView.text = currentMusicModel.track
-            binding.artistTextView.text = currentMusicModel.track
+            binding.artistTextView.text = currentMusicModel.artist
             Glide.with(binding.coverImageView.context)
                 .load(currentMusicModel.coverUrl)
                 .into(binding.coverImageView)
