@@ -247,6 +247,7 @@ class DarkActivity : AppCompatActivity(R.layout.fragment_player) {
         binding?.let { binding ->
             binding.trackTextView.text = currentMusicModel.track
             binding.artistTextView.text = currentMusicModel.artist
+            binding.artistTextView.text = currentMusicModel.artist
             Glide.with(binding.coverImageView.context)
                 .load(currentMusicModel.coverUrl)
                 .into(binding.coverImageView)
@@ -254,12 +255,12 @@ class DarkActivity : AppCompatActivity(R.layout.fragment_player) {
         }
     }
 
-    override fun onStop() {
+    /*override fun onStop() {
         super.onStop()
 
         player?.pause()
         myHandler?.removeCallbacks(updateSeekRunnable)
-    }
+    }*/
 
     override fun onDestroy() {
         super.onDestroy()

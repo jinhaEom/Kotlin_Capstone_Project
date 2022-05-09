@@ -38,9 +38,9 @@ object MusicNotification {
 
         // 알림
         val notification = NotificationCompat.Builder(context, CHANNEL_ID)
-            .setContentTitle("Music Player")
-            .setContentText("My Music")
-            .setSmallIcon(R.drawable.ic_launcher_background)
+            .setContentTitle("음악이 실행중입니다.")
+            .setContentText("음악")
+            .setSmallIcon(R.drawable.appicon)
             .setOngoing(true) // true 일경우 알림 리스트에서 클릭하거나 좌우로 드래그해도 사라지지 않음
             .addAction(
                 NotificationCompat.Action(

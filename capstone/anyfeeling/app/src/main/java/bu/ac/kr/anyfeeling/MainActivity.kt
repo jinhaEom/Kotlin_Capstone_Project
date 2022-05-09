@@ -36,11 +36,12 @@ class MainActivity : AppCompatActivity() {
 
         val intent = Intent(this,MyService::class.java)
         if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.O){
-            this.startService(
-                intent
-            )
+                intent.action = Actions.START_FOREGROUND
+            startService(intent)
+
         }else{
-            this.startService(intent)
+            intent.action = Actions.START_FOREGROUND
+            startService(intent)
         }
 
 

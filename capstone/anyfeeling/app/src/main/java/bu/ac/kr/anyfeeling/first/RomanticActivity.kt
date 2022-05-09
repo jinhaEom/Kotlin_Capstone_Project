@@ -245,12 +245,12 @@ class RomanticActivity: AppCompatActivity(R.layout.fragment_player) {
 
         }
     }
-    override fun onStop() {
+    /*override fun onStop() {
         super.onStop()
 
         player?.pause()
         myHandler?.removeCallbacks(updateSeekRunnable)
-    }
+    }*/
 
     override fun onDestroy() {
         super.onDestroy()
