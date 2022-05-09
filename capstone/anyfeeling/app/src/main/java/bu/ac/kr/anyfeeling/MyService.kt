@@ -9,6 +9,7 @@ import android.media.MediaPlayer
 import android.net.Uri
 import android.os.Build
 import android.os.IBinder
+import android.util.Log
 import android.widget.Adapter
 import androidx.core.app.NotificationCompat
 import bu.ac.kr.anyfeeling.adapter.PlayListAdapter
@@ -24,40 +25,55 @@ import java.net.URL
 
 class MyService : Service() {
 
-    private var mp: MediaPlayer?= null
 
-    override fun onBind(intent: Intent): IBinder {
-        TODO("Return the communication channel to the service.")
+    override fun onStartCommand(intent: Intent?, flags: Int, startId: Int): Int {
+        Log.e(TAG, "Action Received = ${intent?.action}")
+        // intent가 시스템에 의해 재생성되었을때 null값이므로 Java에서는 null check 필수
+        when (intent?.action) {
+            Actions.START_FOREGROUND -> {
+                Log.e(TAG, "Start Foreground 인텐트를 받음")
+                startForegroundService()
+            }
+            Actions.STOP_FOREGROUND -> {
+                Log.e(TAG, "Stop Foreground 인텐트를 받음")
+                stopForegroundService()
+            }
+            Actions.PREV -> Log.e(TAG, "Clicked = 이전")
+            Actions.PLAY -> Log.e(TAG, "Clicked = 재생")
+            Actions.NEXT -> Log.e(TAG, "Clicked = 다음")
+        }
+        return START_STICKY
+    }
+
+    private fun startForegroundService() {
+        val notification = MusicNotification.createNotification(this)
+        startForeground(NOTIFICATION_ID, notification)
+    }
+
+    private fun stopForegroundService() {
+        stopForeground(true)
+        stopSelf()
+    }
+
+    override fun onBind(intent: Intent?): IBinder? {
+        // bound service가 아니므로 null
+        return null
     }
 
     override fun onCreate() {
-        if (Build.VERSION.SDK_INT >= 26) {
-            val CHANNEL_ID = "my_channel_01"
-            val channel = NotificationChannel(CHANNEL_ID,
-                "Channel human readable title", NotificationManager.IMPORTANCE_DEFAULT)
-
-            (getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager).createNotificationChannel(channel)
-
-            //foreground 설정을 위해선 notification이 필요하다
-            val notification = NotificationCompat.Builder(this, CHANNEL_ID)
-                .setContentTitle("")
-                .setContentText("").build()
-
-            startForeground(111, notification)
-
-            mp?.start()
-
-        }
-
-    }
-
-    override fun onStartCommand(intent: Intent?, flags: Int, startId: Int): Int {
-        mp?.start()
-        return super.onStartCommand(intent, flags, startId)
+        super.onCreate()
+        Log.e(TAG, "onCreate()")
     }
 
     override fun onDestroy() {
         super.onDestroy()
-        mp?.stop()
+        Log.e(TAG, "onDestroy()")
     }
+
+    companion object {
+        const val TAG = "[MusicPlayerService]"
+        const val NOTIFICATION_ID = 20
+    }
+
+
 }

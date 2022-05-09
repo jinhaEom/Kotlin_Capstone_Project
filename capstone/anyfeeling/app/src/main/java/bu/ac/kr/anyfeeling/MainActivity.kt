@@ -12,6 +12,7 @@ import android.os.Bundle
 import android.util.TypedValue
 import android.view.View
 import android.view.WindowManager
+import androidx.core.content.ContextCompat.startForegroundService
 
 
 import androidx.fragment.app.Fragment
@@ -20,6 +21,7 @@ import bu.ac.kr.anyfeeling.first.FirstFragment
 import bu.ac.kr.anyfeeling.homeFragment.HomeFragment
 import bu.ac.kr.anyfeeling.secondFragment.SecondFragment
 import bu.ac.kr.anyfeeling.databinding.ActivityMainBinding
+import com.google.android.exoplayer2.util.Util.startForegroundService
 import com.google.android.material.bottomnavigation.BottomNavigationView
 
 
@@ -34,21 +36,12 @@ class MainActivity : AppCompatActivity() {
 
         val intent = Intent(this,MyService::class.java)
         if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.O){
-            this.startForegroundService(
+            this.startService(
                 intent
             )
         }else{
             this.startService(intent)
         }
-
-
-
-
-
-
-
-
-
 
 
         makeStatusBarTransparent(context = HomeFragment())
