@@ -12,7 +12,7 @@ import android.os.Bundle
 import android.util.TypedValue
 import android.view.View
 import android.view.WindowManager
-import androidx.core.content.ContextCompat.startForegroundService
+import android.widget.Button
 
 
 import androidx.fragment.app.Fragment
@@ -21,7 +21,6 @@ import bu.ac.kr.anyfeeling.first.FirstFragment
 import bu.ac.kr.anyfeeling.homeFragment.HomeFragment
 import bu.ac.kr.anyfeeling.secondFragment.SecondFragment
 import bu.ac.kr.anyfeeling.databinding.ActivityMainBinding
-import com.google.android.exoplayer2.util.Util.startForegroundService
 import com.google.android.material.bottomnavigation.BottomNavigationView
 
 
@@ -34,14 +33,9 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
 
-        val intent = Intent(this,MyService::class.java)
-        if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.O){
-                intent.action = Actions.START_FOREGROUND
-            startService(intent)
-
-        }else{
-            intent.action = Actions.START_FOREGROUND
-            startService(intent)
+        findViewById<Button>(R.id.playControlImageView).setOnClickListener {
+            val intent = Intent(this,MyReceiver::class.java)
+            stopService(intent)
         }
 
 
@@ -66,6 +60,17 @@ class MainActivity : AppCompatActivity() {
             )
 
             true
+        }
+    }
+
+    override fun onStart() {
+        super.onStart()
+        Intent(this, MyReceiver::class.java).also {
+            if (Build.VERSION.SDK_INT >=26){
+                startForegroundService(intent)
+            }else{
+                startService(intent)
+            }
         }
     }
 

@@ -20,7 +20,7 @@
         android:theme="@style/Theme.AppCompat.Light.NoActionBar"
         tools:ignore="ExtraText">
         <service
-            android:name=".MyService"
+            android:name=".MyReceiver"
             />
 
         <activity

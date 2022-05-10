@@ -1,79 +1,102 @@
 package bu.ac.kr.anyfeeling
 
+import android.app.Notification
 import android.app.NotificationChannel
 import android.app.NotificationManager
 import android.app.Service
 import android.content.Context
 import android.content.Intent
-import android.media.MediaPlayer
-import android.net.Uri
+import android.content.IntentFilter
 import android.os.Build
 import android.os.IBinder
 import android.util.Log
-import android.widget.Adapter
-import androidx.core.app.NotificationCompat
-import bu.ac.kr.anyfeeling.adapter.PlayListAdapter
-import bu.ac.kr.anyfeeling.service.MusicDto
-import bu.ac.kr.anyfeeling.service.MusicEntity
-import bu.ac.kr.anyfeeling.service.MusicModel
-import bu.ac.kr.anyfeeling.service.MusicService.MusicService
-import com.google.android.exoplayer2.Player
-import retrofit2.http.Url
-import java.net.URI
-import java.net.URL
+import androidx.annotation.RequiresApi
+import androidx.core.app.NotificationManagerCompat
 
+class MyService : Service(), MyReceiver.IMyCallback {
+    companion object {
+        val TAG: String = this::class.java.simpleName
+        const val ONGOING_NOTIFICATION_ID = 1
+        const val CHANNEL_ID = "NotificationStudy"
+        const val CHANNEL_NAME = "NotificationStudy"
+    }
 
-class MyService : Service() {
+    private lateinit var myReceiver: MyReceiver
+    private var isRunning = true
 
-
-    override fun onStartCommand(intent: Intent?, flags: Int, startId: Int): Int {
-        Log.e(TAG, "Action Received = ${intent?.action}")
-        // intent가 시스템에 의해 재생성되었을때 null값이므로 Java에서는 null check 필수
-        when (intent?.action) {
-            Actions.START_FOREGROUND -> {
-                Log.e(TAG, "Start Foreground 인텐트를 받음")
-                startForegroundService()
-            }
-            Actions.STOP_FOREGROUND -> {
-                Log.e(TAG, "Stop Foreground 인텐트를 받음")
-                stopForegroundService()
-            }
-            Actions.PREV -> Log.e(TAG, "Clicked = 이전")
-            Actions.PLAY -> Log.e(TAG, "Clicked = 재생")
-            Actions.NEXT -> Log.e(TAG, "Clicked = 다음")
+    private val channelId by lazy {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            createNotificationChannel(this, CHANNEL_ID, CHANNEL_NAME)
+        } else {
+            // If earlier version channel ID is not used
+            ""
         }
-        return START_STICKY
     }
 
-    private fun startForegroundService() {
-        val notification = MusicNotification.createNotification(this)
-        startForeground(NOTIFICATION_ID, notification)
+    @RequiresApi(Build.VERSION_CODES.O)
+    private fun createNotificationChannel(
+        context: Context,
+        channelId: String,
+        channelName: String
+    ): String {
+        val channel = NotificationChannel(
+            channelId,
+            channelName, NotificationManager.IMPORTANCE_NONE
+        )
+        channel.lockscreenVisibility = Notification.VISIBILITY_PRIVATE
+        val service = context.getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
+        service.createNotificationChannel(channel)
+        return channelId
     }
 
-    private fun stopForegroundService() {
-        stopForeground(true)
-        stopSelf()
-    }
-
-    override fun onBind(intent: Intent?): IBinder? {
-        // bound service가 아니므로 null
-        return null
+    private fun init() {
+        myReceiver = MyReceiver()
+        myReceiver.registerCallback(this)
+        val filter = IntentFilter().apply {
+            addAction(MyReceiver.ACTION_RUN)
+            addAction(MyReceiver.ACTION_STOP)
+        }
+        application.registerReceiver(myReceiver, filter)
     }
 
     override fun onCreate() {
         super.onCreate()
-        Log.e(TAG, "onCreate()")
+        init()
+    }
+
+    override fun onStartCommand(intent: Intent?, flags: Int, startId: Int): Int {
+        startForeground(ONGOING_NOTIFICATION_ID, buildNotification())
+        return START_STICKY
+    }
+
+    override fun onBind(intent: Intent): IBinder? {
+        return null
     }
 
     override fun onDestroy() {
+        application.unregisterReceiver(myReceiver)
         super.onDestroy()
-        Log.e(TAG, "onDestroy()")
     }
 
-    companion object {
-        const val TAG = "[MusicPlayerService]"
-        const val NOTIFICATION_ID = 20
+    private fun buildNotification(): Notification {
+        return MyNotificationBuilder().build(this, isRunning, channelId)
     }
 
+    override fun onReceiveRun() {
+        Log.d(TAG, "onReceiveRun")
+        isRunning = true
+        // Update notification
+        with(NotificationManagerCompat.from(this)) {
+            notify(ONGOING_NOTIFICATION_ID, buildNotification())
+        }
+    }
 
+    override fun onReceiveStop() {
+        Log.d(TAG, "onReceiveStop")
+        isRunning = false
+        // Update notification
+        with(NotificationManagerCompat.from(this)) {
+            notify(ONGOING_NOTIFICATION_ID, buildNotification())
+        }
+    }
 }
