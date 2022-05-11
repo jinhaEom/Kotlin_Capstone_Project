@@ -30,11 +30,13 @@ import com.google.android.material.bottomnavigation.BottomNavigationView
 class MainActivity : AppCompatActivity() {
 
     private val binding by lazy { ActivityMainBinding.inflate(layoutInflater) }
-
+    private lateinit var serviceIntent : Intent
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
+
+        serviceIntent= Intent(this,MyService::class.java)
 
 
 
@@ -62,6 +64,17 @@ class MainActivity : AppCompatActivity() {
 
             true
         }
+    }
+    fun serviceStart(view : View){
+        if(android.os.Build.VERSION.SDK_INT>= android.os.Build.VERSION_CODES.O){
+            startForegroundService(serviceIntent)
+        }
+        else{
+            startService(serviceIntent)
+        }
+    }
+    fun serviceStop(view:View){
+        stopService(serviceIntent)
     }
 
 
