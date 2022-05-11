@@ -1,10 +1,11 @@
 package bu.ac.kr.anyfeeling
 
 
-import android.app.Activity
+import android.app.*
 
 import android.content.Context
 import android.content.Intent
+import android.graphics.BitmapFactory
 import android.graphics.Color
 import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
@@ -13,6 +14,8 @@ import android.util.TypedValue
 import android.view.View
 import android.view.WindowManager
 import android.widget.Button
+import androidx.core.app.NotificationCompat
+import androidx.core.app.NotificationManagerCompat
 
 
 import androidx.fragment.app.Fragment
@@ -33,10 +36,8 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
 
-        findViewById<Button>(R.id.playControlImageView).setOnClickListener {
-            val intent = Intent(this,MyReceiver::class.java)
-            stopService(intent)
-        }
+
+
 
 
         makeStatusBarTransparent(context = HomeFragment())
@@ -63,16 +64,6 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-    override fun onStart() {
-        super.onStart()
-        Intent(this, MyReceiver::class.java).also {
-            if (Build.VERSION.SDK_INT >=26){
-                startForegroundService(intent)
-            }else{
-                startService(intent)
-            }
-        }
-    }
 
     /*private fun fragmenthome3(binding: FragmentHomeBinding){
         binding.appBar.addOnOffsetChangedListener(AppBarLayout.OnOffsetChangedListener { appBarLayout, verticalOffset ->
@@ -112,12 +103,7 @@ class MainActivity : AppCompatActivity() {
                 commitAllowingStateLoss()
             }
     }
-
 }
-
-
-fun Float.spToPx(context: Context): Float =
-    TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, this, context.resources.displayMetrics)
 
 fun Activity.makeStatusBarTransparent(context: HomeFragment) {
     window.apply {
@@ -126,6 +112,7 @@ fun Activity.makeStatusBarTransparent(context: HomeFragment) {
         addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS)
         statusBarColor = Color.TRANSPARENT
     }
+
 }
 
 
