@@ -5,11 +5,15 @@ import android.app.*
 
 import android.content.Context
 import android.content.Intent
+import android.content.pm.PackageInfo
+import android.content.pm.PackageManager
 import android.graphics.BitmapFactory
 import android.graphics.Color
 import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Base64
+import android.util.Log
 import android.util.TypedValue
 import android.view.View
 import android.view.WindowManager
@@ -25,6 +29,8 @@ import bu.ac.kr.anyfeeling.homeFragment.HomeFragment
 import bu.ac.kr.anyfeeling.secondFragment.SecondFragment
 import bu.ac.kr.anyfeeling.databinding.ActivityMainBinding
 import com.google.android.material.bottomnavigation.BottomNavigationView
+import java.security.MessageDigest
+import java.security.NoSuchAlgorithmException
 
 
 class MainActivity : AppCompatActivity() {
@@ -35,6 +41,8 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
+
+
 
         var builder = NotificationCompat.Builder(this,"MY_channel")
             .setSmallIcon(R.drawable.appicon)
@@ -57,7 +65,7 @@ class MainActivity : AppCompatActivity() {
             // 알림 표시: 알림의 고유 ID(ex: 1002), 알림 결과
             notificationManager.notify(1002, builder.build())
         }
-    
+
 
 
 

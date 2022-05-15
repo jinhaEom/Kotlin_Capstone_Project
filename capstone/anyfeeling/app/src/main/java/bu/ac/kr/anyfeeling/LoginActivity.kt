@@ -1,7 +1,11 @@
 package bu.ac.kr.anyfeeling
 
 import android.content.Intent
+import android.content.pm.PackageInfo
+import android.content.pm.PackageManager
 import android.os.Bundle
+import android.util.Base64
+import android.util.Log
 import android.widget.Button
 import android.widget.EditText
 import android.widget.Toast
@@ -14,6 +18,8 @@ import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
+import java.security.MessageDigest
+import java.security.NoSuchAlgorithmException
 
 class LoginActivity : AppCompatActivity() {
 
@@ -25,6 +31,7 @@ class LoginActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
 
         setContentView(R.layout.activity_login)
+        printHashKey()
 
 
         auth = Firebase.auth
@@ -110,7 +117,22 @@ class LoginActivity : AppCompatActivity() {
 
             })
     }
-
+    fun printHashKey() {  //페이스북 로그인 hash 값 얻기 위한 과정
+        try {
+            val info: PackageInfo = packageManager
+                .getPackageInfo(packageName, PackageManager.GET_SIGNATURES)
+            for (signature in info.signatures) {
+                val md: MessageDigest = MessageDigest.getInstance("SHA")
+                md.update(signature.toByteArray())
+                val hashKey: String = String(Base64.encode(md.digest(), 0))
+                Log.i("facebookLogin", "printHashKey() Hash Key: $hashKey")
+            }
+        } catch (e: NoSuchAlgorithmException) {
+            Log.e("facebookLogin", "printHashKey()", e)
+        } catch (e: Exception) {
+            Log.e("facebookLogin", "printHashKey()", e)
+        }
+    }
 
     // 유저정보 넘겨주고 메인 액티비티 호출
     private fun moveMainPage(user: FirebaseUser?) {
