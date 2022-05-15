@@ -19,9 +19,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat.Light.NoActionBar"
         tools:ignore="ExtraText">
-        <service
-            android:name=".MyReceiver"
-            />
+
 
         <activity
             android:name=".IntroActivity"

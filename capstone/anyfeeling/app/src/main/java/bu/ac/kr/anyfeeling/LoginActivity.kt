@@ -10,6 +10,7 @@ import android.widget.Button
 import android.widget.EditText
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import bu.ac.kr.anyfeeling.homeFragment.HomeFragment
 import com.facebook.*
 import com.facebook.login.LoginResult
 import com.facebook.login.widget.LoginButton
@@ -17,6 +18,7 @@ import com.google.firebase.auth.FacebookAuthProvider
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.auth.ktx.auth
+import com.google.firebase.database.ktx.database
 import com.google.firebase.ktx.Firebase
 import java.security.MessageDigest
 import java.security.NoSuchAlgorithmException
@@ -37,6 +39,7 @@ class LoginActivity : AppCompatActivity() {
         auth = Firebase.auth
         callbackManager = CallbackManager.Factory.create()
         initFacebookLoginButton()
+
 
 
         val signUpButton = findViewById<Button>(R.id.signUpButton)
@@ -96,8 +99,8 @@ class LoginActivity : AppCompatActivity() {
                     auth.signInWithCredential(credential)
                         .addOnCompleteListener(this@LoginActivity) { task ->
                             if (task.isSuccessful) {
-                                moveMainPage(auth?.currentUser)
-
+                                moveMainPage(auth.currentUser)
+                                handleSuccessLogin()
                             } else {
                                 Toast.makeText(
                                     this@LoginActivity,
@@ -117,6 +120,20 @@ class LoginActivity : AppCompatActivity() {
 
             })
     }
+
+    private fun handleSuccessLogin(){
+        if(auth.currentUser == null){
+            Toast.makeText(this,"로그인에 실패했습니다.",Toast.LENGTH_SHORT).show()
+            return
+        }
+        val userId = auth.currentUser?.uid.orEmpty()
+        val currentUserDB = Firebase.database.reference.child("Users").child(userId)
+        val user = mutableMapOf<String, Any>()
+        user["userId"] = userId
+        currentUserDB.updateChildren(user)
+
+        finish()
+    }
     fun printHashKey() {  //페이스북 로그인 hash 값 얻기 위한 과정
         try {
             val info: PackageInfo = packageManager
@@ -134,11 +151,12 @@ class LoginActivity : AppCompatActivity() {
         }
     }
 
+
     // 유저정보 넘겨주고 메인 액티비티 호출
     private fun moveMainPage(user: FirebaseUser?) {
         if (user != null) {
-            startActivity(Intent(this, MainActivity::class.java))
-            finish()
+            startActivity(Intent(this, HomeFragment::class.java))
+            this.finish()
         }
     }
 
@@ -149,11 +167,7 @@ class LoginActivity : AppCompatActivity() {
 
     }
 
-    private fun handleSuccessLogin() {
-        if (auth!!.currentUser == null) {
-            Toast.makeText(this, "로그인에 실패했습니다.", Toast.LENGTH_SHORT).show()
-            return
-        }
-    }
+
+
 
 }
