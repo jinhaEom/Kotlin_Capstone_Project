@@ -12,14 +12,17 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import bu.ac.kr.anyfeeling.homeFragment.HomeFragment
 import com.facebook.*
+import com.facebook.login.LoginManager
 import com.facebook.login.LoginResult
 import com.facebook.login.widget.LoginButton
+import com.google.common.collect.Lists.asList
 import com.google.firebase.auth.FacebookAuthProvider
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.database.ktx.database
 import com.google.firebase.ktx.Firebase
+import com.kakao.sdk.common.util.Utility
 import java.security.MessageDigest
 import java.security.NoSuchAlgorithmException
 
@@ -33,13 +36,12 @@ class LoginActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
 
         setContentView(R.layout.activity_login)
-        printHashKey()
 
 
+        val keyHash = Utility.getKeyHash(this)//onCreate 안에 입력해주자
+        Log.d("Hash", keyHash)
         auth = Firebase.auth
         callbackManager = CallbackManager.Factory.create()
-        initFacebookLoginButton()
-
 
 
         val signUpButton = findViewById<Button>(R.id.signUpButton)
@@ -48,6 +50,7 @@ class LoginActivity : AppCompatActivity() {
             startActivity(Intent(this, SignUpActivity::class.java))
         }
 
+
         // 로그인 버튼
         val loginButton = findViewById<Button>(R.id.loginButton)
         val emailEditText = findViewById<EditText>(R.id.emailEditText)
@@ -55,6 +58,8 @@ class LoginActivity : AppCompatActivity() {
         loginButton.setOnClickListener {
             signIn(emailEditText.text.toString(), passwordEditText.text.toString())
         }
+
+
 
     }
 
@@ -88,84 +93,20 @@ class LoginActivity : AppCompatActivity() {
         }
     }
 
-    private fun initFacebookLoginButton() {
-        val facebookLoginButton = findViewById<LoginButton>(R.id.facebookLoginButton)
-
-        facebookLoginButton.setPermissions("email", "public_profile")
-        facebookLoginButton.registerCallback(callbackManager,
-            object : FacebookCallback<LoginResult> {
-                override fun onSuccess(result: LoginResult) {
-                    val credential = FacebookAuthProvider.getCredential(result.accessToken.token)
-                    auth.signInWithCredential(credential)
-                        .addOnCompleteListener(this@LoginActivity) { task ->
-                            if (task.isSuccessful) {
-                                moveMainPage(auth.currentUser)
-                                handleSuccessLogin()
-                            } else {
-                                Toast.makeText(
-                                    this@LoginActivity,
-                                    "페이스북 로그인에 실패했습니다.",
-                                    Toast.LENGTH_SHORT
-                                ).show()
-                            }
-                        }
-                }
-
-                override fun onCancel() {}
-
-                override fun onError(error: FacebookException?) {
-                    Toast.makeText(this@LoginActivity, "페이스북 로그인에 실패했습니다.", Toast.LENGTH_SHORT)
-                        .show()
-                }
-
-            })
-    }
-
-    private fun handleSuccessLogin(){
-        if(auth.currentUser == null){
-            Toast.makeText(this,"로그인에 실패했습니다.",Toast.LENGTH_SHORT).show()
-            return
-        }
-        val userId = auth.currentUser?.uid.orEmpty()
-        val currentUserDB = Firebase.database.reference.child("Users").child(userId)
-        val user = mutableMapOf<String, Any>()
-        user["userId"] = userId
-        currentUserDB.updateChildren(user)
-
-        finish()
-    }
-    fun printHashKey() {  //페이스북 로그인 hash 값 얻기 위한 과정
-        try {
-            val info: PackageInfo = packageManager
-                .getPackageInfo(packageName, PackageManager.GET_SIGNATURES)
-            for (signature in info.signatures) {
-                val md: MessageDigest = MessageDigest.getInstance("SHA")
-                md.update(signature.toByteArray())
-                val hashKey: String = String(Base64.encode(md.digest(), 0))
-                Log.i("facebookLogin", "printHashKey() Hash Key: $hashKey")
-            }
-        } catch (e: NoSuchAlgorithmException) {
-            Log.e("facebookLogin", "printHashKey()", e)
-        } catch (e: Exception) {
-            Log.e("facebookLogin", "printHashKey()", e)
-        }
-    }
 
 
     // 유저정보 넘겨주고 메인 액티비티 호출
     private fun moveMainPage(user: FirebaseUser?) {
         if (user != null) {
-            startActivity(Intent(this, HomeFragment::class.java))
-            this.finish()
+            startActivity(Intent(this, MainActivity::class.java))
+            finish()
         }
     }
 
-    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
 
-        super.onActivityResult(requestCode, resultCode, data)
-        callbackManager.onActivityResult(requestCode, resultCode, data)
 
-    }
+
+
 
 
 
