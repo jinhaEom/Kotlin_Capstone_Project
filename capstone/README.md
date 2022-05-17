@@ -7,13 +7,12 @@
 - 설정화면에서는 회원 로그아웃, 개발자 정보, 공지사항등을 확인 할 수 있다.
 - 음악은 일반 가요가 아닌 ncs 음악을 전제로 한다.
 ## TODO LIST
-- 페이스북 로그인(토큰 추가할 것)
-- Notification(mediaStyle) 추가 
+- Notification(mediaStyle) 추가 (가능하면)
 
 <div style="margin:0 auto;">
-<img src="https://user-images.githubusercontent.com/84216838/166097207-288aeda3-efb0-4c5c-a680-a70e9798f2b5.png" width=200 height=350/>
+<img src="https://user-images.githubusercontent.com/84216838/168738472-9c601ffd-e7db-4618-8f68-c1fbbbb28089.png" width=200 height=350/>
 &nbsp;
-<img src="https://user-images.githubusercontent.com/84216838/166097209-a33af028-3148-41e8-ace6-042e3af7cdcc.png" width=200 height=350/>
+<img src="https://user-images.githubusercontent.com/84216838/168738608-4bf248b9-b4c2-4d31-be98-f08d03a31944.png" width=200 height=350/>
 &nbsp;
 <img src="https://user-images.githubusercontent.com/84216838/163390459-cee55ed9-c43e-42a3-ad2a-ccfa978a179a.png" width=200 height=350/>
 &nbsp;
