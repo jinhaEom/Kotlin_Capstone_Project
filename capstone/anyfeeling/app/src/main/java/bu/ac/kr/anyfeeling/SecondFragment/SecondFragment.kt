@@ -7,11 +7,13 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.fragment.app.DialogFragment
 import bu.ac.kr.anyfeeling.LoginActivity
 import bu.ac.kr.anyfeeling.R
 import bu.ac.kr.anyfeeling.databinding.FragmentSecondtabBinding
 import com.google.firebase.auth.FirebaseAuth
+import com.kakao.sdk.user.UserApiClient
 
 class SecondFragment: DialogFragment(R.layout.fragment_secondtab)  {
     lateinit var binding: FragmentSecondtabBinding
@@ -31,6 +33,9 @@ class SecondFragment: DialogFragment(R.layout.fragment_secondtab)  {
                 DialogInterface.OnClickListener{
                     dialog,id ->
                     FirebaseAuth.getInstance().signOut()
+                    UserApiClient.instance.logout {
+                        Toast.makeText(context,"로그아웃 성공",Toast.LENGTH_SHORT).show()
+                    }
                     val intent = Intent(context,LoginActivity::class.java)
                     startActivity(intent)
                 })
