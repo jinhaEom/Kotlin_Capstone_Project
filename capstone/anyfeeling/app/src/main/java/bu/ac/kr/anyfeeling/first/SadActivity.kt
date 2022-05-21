@@ -225,6 +225,7 @@ class SadActivity : AppCompatActivity(R.layout.fragment_player) {
             }
     }
 
+
     private fun setMusicList(modelList: List<MusicModel>) {
         this.let {
             player?.addMediaItems(modelList.map { musicModel ->

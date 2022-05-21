@@ -28,6 +28,8 @@ import bu.ac.kr.anyfeeling.first.FirstFragment
 import bu.ac.kr.anyfeeling.homeFragment.HomeFragment
 import bu.ac.kr.anyfeeling.secondFragment.SecondFragment
 import bu.ac.kr.anyfeeling.databinding.ActivityMainBinding
+import bu.ac.kr.anyfeeling.service.MusicEntity
+import bu.ac.kr.anyfeeling.service.MusicModel
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.kakao.sdk.common.util.Utility
 import java.security.MessageDigest
@@ -44,10 +46,7 @@ class MainActivity : AppCompatActivity() {
         setContentView(binding.root)
 
 
-
-
-
-        var builder = NotificationCompat.Builder(this,"MY_channel")
+        /*var builder = NotificationCompat.Builder(this,"MY_channel")
             .setSmallIcon(R.drawable.appicon)
             .setContentTitle("Any Feeling")
             .setContentText("앱이 실행중 입니다.")
@@ -67,7 +66,8 @@ class MainActivity : AppCompatActivity() {
 
             // 알림 표시: 알림의 고유 ID(ex: 1002), 알림 결과
             notificationManager.notify(1002, builder.build())
-        }
+        }*/
+
 
 
 
@@ -157,11 +157,5 @@ fun Activity.makeStatusBarTransparent(context: HomeFragment) {
     }
 
 }
-
-
-
-
-
-
 
 

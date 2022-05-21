@@ -66,9 +66,9 @@
                     android:padding="16dp">
 
                     <ImageView
-
-                        android:layout_width="110dp"
-                        android:layout_height="110dp"
+                        android:scaleType="fitXY"
+                        android:layout_width="110sp"
+                        android:layout_height="110sp"
                         android:src="@drawable/happy" />
 
                     <TextView
@@ -136,6 +136,8 @@
                     android:padding="16dp">
 
                     <ImageView
+                        android:scaleType="fitXY"
+
                         android:layout_width="110dp"
                         android:layout_height="110dp"
                         android:src="@drawable/romantic" />
@@ -171,6 +173,8 @@
                     android:padding="16dp">
 
                     <ImageView
+                        android:scaleType="fitXY"
+
                         android:layout_width="110dp"
                         android:layout_height="110dp"
                         android:src="@drawable/gloomy" />
@@ -206,6 +210,8 @@
                     android:padding="16dp">
 
                     <ImageView
+                        android:scaleType="fitXY"
+
                         android:layout_width="110dp"
                         android:layout_height="110dp"
                         android:src="@drawable/sexy" />
@@ -241,6 +247,8 @@
                     android:padding="16dp">
 
                     <ImageView
+                        android:scaleType="fitXY"
+
                         android:layout_width="110dp"
                         android:layout_height="110dp"
                         android:src="@drawable/relaxing" />
@@ -276,6 +284,8 @@
                     android:padding="16dp">
 
                     <ImageView
+                        android:scaleType="fitXY"
+
                         android:layout_width="110dp"
                         android:layout_height="110dp"
                         android:src="@drawable/dark" />
@@ -311,6 +321,8 @@
                     android:padding="16dp">
 
                     <ImageView
+                        android:scaleType="fitXY"
+
                         android:layout_width="110dp"
                         android:layout_height="110dp"
                         android:src="@drawable/funny" />
