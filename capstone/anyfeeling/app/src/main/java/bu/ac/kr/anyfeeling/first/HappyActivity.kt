@@ -40,6 +40,7 @@ class HappyActivity: AppCompatActivity(R.layout.fragment_player) {
         super.onCreate(savedInstanceState)
 
 
+
         val fragmentPlayerBinding = FragmentPlayerBinding.inflate(layoutInflater)
         binding = fragmentPlayerBinding
         setContentView(binding!!.root)
@@ -49,6 +50,7 @@ class HappyActivity: AppCompatActivity(R.layout.fragment_player) {
         initRecyclerView(fragmentPlayerBinding)
         initSeekBar(fragmentPlayerBinding)
         getVideoListFromServer()
+
 
 
     }
@@ -72,6 +74,7 @@ class HappyActivity: AppCompatActivity(R.layout.fragment_player) {
 
     private fun initPlayControlButtons(fragmentPlayerBinding: FragmentPlayerBinding) {
         fragmentPlayerBinding.playControlImageView.setOnClickListener {
+
             val player = this.player?: return@setOnClickListener
 
             if(player.isPlaying){
@@ -231,7 +234,9 @@ class HappyActivity: AppCompatActivity(R.layout.fragment_player) {
         model.updateCurrentPosition(musicModel)
         player?.seekTo(model.currentPosition,0)
         player?.play()
+
     }
+
     private fun updatePlayerView(currentMusicModel: MusicModel?){
         currentMusicModel ?: return
 

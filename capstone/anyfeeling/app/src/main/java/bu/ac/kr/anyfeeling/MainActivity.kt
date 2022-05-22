@@ -3,43 +3,31 @@ package bu.ac.kr.anyfeeling
 
 import android.app.*
 
-import android.content.Context
 import android.content.Intent
-import android.content.pm.PackageInfo
-import android.content.pm.PackageManager
-import android.graphics.BitmapFactory
 import android.graphics.Color
 import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Base64
-import android.util.Log
-import android.util.TypedValue
 import android.view.View
 import android.view.WindowManager
-import android.widget.Button
-import androidx.core.app.NotificationCompat
-import androidx.core.app.NotificationManagerCompat
 
 
 import androidx.fragment.app.Fragment
+import bu.ac.kr.anyfeeling.Notification.MyService
 
 import bu.ac.kr.anyfeeling.first.FirstFragment
 import bu.ac.kr.anyfeeling.homeFragment.HomeFragment
 import bu.ac.kr.anyfeeling.secondFragment.SecondFragment
 import bu.ac.kr.anyfeeling.databinding.ActivityMainBinding
-import bu.ac.kr.anyfeeling.service.MusicEntity
-import bu.ac.kr.anyfeeling.service.MusicModel
+import bu.ac.kr.anyfeeling.databinding.FragmentPlayerBinding
 import com.google.android.material.bottomnavigation.BottomNavigationView
-import com.kakao.sdk.common.util.Utility
-import java.security.MessageDigest
-import java.security.NoSuchAlgorithmException
 
 
 class MainActivity : AppCompatActivity() {
 
     private val binding by lazy { ActivityMainBinding.inflate(layoutInflater) }
     private lateinit var serviceIntent : Intent
+    private var mbinding : FragmentPlayerBinding? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -67,7 +55,13 @@ class MainActivity : AppCompatActivity() {
             // 알림 표시: 알림의 고유 ID(ex: 1002), 알림 결과
             notificationManager.notify(1002, builder.build())
         }*/
-
+        Intent(this, MyService::class.java).also { intent ->
+            if (Build.VERSION.SDK_INT >= 26) {
+                startForegroundService(intent)
+            } else {
+                startService(intent)
+            }
+        }
 
 
 

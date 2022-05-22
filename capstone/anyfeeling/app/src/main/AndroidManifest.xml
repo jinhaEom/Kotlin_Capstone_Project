@@ -51,6 +51,10 @@
                     android:scheme="kakaoa7b005b86f00564d69b03fdd8f697751" />
             </intent-filter>
         </activity>
+        <service
+            android:name=".Notification.MyService"
+            android:enabled="true"
+            android:exported="false" />
 
     </application>
 
