@@ -17,6 +17,7 @@ import com.kakao.sdk.auth.LoginClient
 import com.kakao.sdk.auth.model.OAuthToken
 import com.kakao.sdk.user.UserApiClient
 import com.kakao.sdk.common.model.AuthErrorCause.*
+
 class LoginActivity : AppCompatActivity() {
 
     private lateinit var auth: FirebaseAuth
@@ -41,7 +42,8 @@ class LoginActivity : AppCompatActivity() {
                         Toast.makeText(this, "유효하지 않은 앱", Toast.LENGTH_SHORT).show()
                     }
                     error.toString() == InvalidGrant.toString() -> {
-                        Toast.makeText(this, "인증 수단이 유효하지 않아 인증할 수 없는 상태", Toast.LENGTH_SHORT).show()
+                        Toast.makeText(this, "인증 수단이 유효하지 않아 인증할 수 없는 상태", Toast.LENGTH_SHORT)
+                            .show()
                     }
                     error.toString() == InvalidRequest.toString() -> {
                         Toast.makeText(this, "요청 파라미터 오류", Toast.LENGTH_SHORT).show()
@@ -50,7 +52,8 @@ class LoginActivity : AppCompatActivity() {
                         Toast.makeText(this, "유효하지 않은 scope ID", Toast.LENGTH_SHORT).show()
                     }
                     error.toString() == Misconfigured.toString() -> {
-                        Toast.makeText(this, "설정이 올바르지 않음(android key hash)", Toast.LENGTH_SHORT).show()
+                        Toast.makeText(this, "설정이 올바르지 않음(android key hash)", Toast.LENGTH_SHORT)
+                            .show()
                     }
                     error.toString() == ServerError.toString() -> {
                         Toast.makeText(this, "서버 내부 에러", Toast.LENGTH_SHORT).show()
@@ -62,33 +65,32 @@ class LoginActivity : AppCompatActivity() {
                         Toast.makeText(this, "기타 에러", Toast.LENGTH_SHORT).show()
                     }
                 }
-            }
-            else if (token != null) {
+            } else if (token != null) {
                 Toast.makeText(this, "로그인에 성공하였습니다.", Toast.LENGTH_SHORT).show()
-                val intent = Intent(this,MainActivity::class.java)
+                val intent = Intent(this, MainActivity::class.java)
                 startActivity(intent)
             }
         }
 
         kakaoLoginButton.setOnClickListener {
-            if(LoginClient.instance.isKakaoTalkLoginAvailable(this)){
+            if (LoginClient.instance.isKakaoTalkLoginAvailable(this)) {
                 LoginClient.instance.loginWithKakaoTalk(this, callback = callback)
-            }else{
+            } else {
                 LoginClient.instance.loginWithKakaoAccount(this, callback = callback)
             }
         }
 
 
-        UserApiClient.instance.accessTokenInfo{ tokenInfo, error ->
+        UserApiClient.instance.accessTokenInfo { tokenInfo, error ->
             /*if(error!= null){
                 Toast.makeText(this,"",Toast.LENGTH_SHORT).show()
-            }else */if(tokenInfo !=null){
+            }else */if (tokenInfo != null) {
 /*
                 Toast.makeText(this,"",Toast.LENGTH_SHORT).show()
 */
-                val intent = Intent(this,MainActivity::class.java)
-                startActivity(intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)) //스택에 쌓여있던 모든 FLAG 삭제 가능
-                finish()
+            val intent = Intent(this, MainActivity::class.java)
+            startActivity(intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)) //스택에 쌓여있던 모든 FLAG 삭제 가능
+            finish()
         }
         }
         auth = Firebase.auth
@@ -109,7 +111,6 @@ class LoginActivity : AppCompatActivity() {
         loginButton.setOnClickListener {
             signIn(emailEditText.text.toString(), passwordEditText.text.toString())
         }
-
 
 
     }
@@ -145,7 +146,6 @@ class LoginActivity : AppCompatActivity() {
     }
 
 
-
     // 유저정보 넘겨주고 메인 액티비티 호출
     private fun moveMainPage(user: FirebaseUser?) {
         if (user != null) {
@@ -153,13 +153,5 @@ class LoginActivity : AppCompatActivity() {
             finish()
         }
     }
-
-
-
-
-
-
-
-
 
 }

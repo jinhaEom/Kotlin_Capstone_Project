@@ -23,35 +23,6 @@ data class PlayerModel(
     fun updateCurrentPosition(musicModel: MusicModel) {
         currentPosition = playMusicList.indexOf(musicModel)
     }
-    fun nextMusic(): MusicModel? {
-        if (Companion.playMusicList.isEmpty()) return null
-
-        Companion.currentPosition =
-            if ((Companion.currentPosition + 1) == Companion.playMusicList.size) 0 else Companion.currentPosition + 1
-        return Companion.playMusicList[Companion.currentPosition]
-    }
-
-    fun prevMusic(): MusicModel? {
-        if (Companion.playMusicList.isEmpty()) return null
-
-        Companion.currentPosition =
-            if ((Companion.currentPosition - 1) < 0) Companion.playMusicList.lastIndex else Companion.currentPosition - 1
-
-        return Companion.playMusicList[Companion.currentPosition]
-    }
-
-    fun currentMusicModel(): MusicModel? {
-        if (Companion.playMusicList.isEmpty()) return null
-
-        return Companion.playMusicList[Companion.currentPosition]
-    }
-
-
-
-companion object {
-    private val playMusicList: List<MusicModel> = emptyList()
-    var currentPosition: Int = -1
-    var isWatchingPlayListView: Boolean = true
 
     fun nextMusic(): MusicModel? {
         if (playMusicList.isEmpty()) return null
@@ -75,5 +46,6 @@ companion object {
 
         return playMusicList[currentPosition]
     }
-}
+
+
 }
