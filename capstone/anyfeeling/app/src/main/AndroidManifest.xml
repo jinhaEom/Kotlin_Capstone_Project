@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     package="bu.ac.kr.anyfeeling">
 
-    <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
 
     <application
@@ -15,7 +15,14 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat.Light.NoActionBar"
         tools:ignore="ExtraText">
-
+        <service
+            android:name=".Notification.MusicPlayerService"
+            android:enabled="true"
+            android:exported="true"></service>
+        <service
+            android:name=".Notification.MusicPlayerService"
+            android:enabled="true"
+            android:exported="true" />
 
         <activity
             android:name=".IntroActivity"
@@ -39,18 +46,20 @@
         <activity android:name=".first.FunnyActivity" />
         <activity android:name=".secondFragment.NotifyActivity" />
         <activity android:name=".secondFragment.IntroduceActivity" />
-
-        <activity android:name="com.kakao.sdk.auth.AuthCodeHandlerActivity"
+        <activity
+            android:name="com.kakao.sdk.auth.AuthCodeHandlerActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.VIEW" />
+
                 <category android:name="android.intent.category.DEFAULT" />
                 <category android:name="android.intent.category.BROWSABLE" />
+
                 <data
                     android:host="oauth"
                     android:scheme="kakaoa7b005b86f00564d69b03fdd8f697751" />
             </intent-filter>
         </activity>
-            </application>
+    </application>
 
 </manifest>

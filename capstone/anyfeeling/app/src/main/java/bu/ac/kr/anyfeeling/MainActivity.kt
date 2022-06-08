@@ -1,39 +1,27 @@
 package bu.ac.kr.anyfeeling
 
 
-import android.annotation.SuppressLint
 import android.app.*
 import android.content.Context
-
 import android.content.Intent
-import android.graphics.BitmapFactory
 import android.graphics.Color
-import android.media.AudioAttributes
-import android.media.RingtoneManager
-import android.net.Uri
 import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
 import android.view.WindowManager
-import androidx.core.app.NotificationCompat
-import androidx.core.app.NotificationManagerCompat
-import androidx.core.content.ContextCompat
-
-
 import androidx.fragment.app.Fragment
+import bu.ac.kr.anyfeeling.Notification.MusicPlayerService
 import bu.ac.kr.anyfeeling.first.FirstFragment
 import bu.ac.kr.anyfeeling.homeFragment.HomeFragment
 import bu.ac.kr.anyfeeling.secondFragment.SecondFragment
 import bu.ac.kr.anyfeeling.databinding.ActivityMainBinding
-import bu.ac.kr.anyfeeling.databinding.FragmentPlayerBinding
-import com.google.android.exoplayer2.util.NotificationUtil.createNotificationChannel
 import com.google.android.material.bottomnavigation.BottomNavigationView
 
 
 class MainActivity : AppCompatActivity() {
-    private val CHANNEL_ID = "testChannel01"   // Channel for notification
-    private var notificationManager: NotificationManager? = null
+    /*private val CHANNEL_ID = "testChannel01"   // Channel for notification
+    private var notificationManager: NotificationManager? = null*/
 
     private val binding by lazy { ActivityMainBinding.inflate(layoutInflater) }
 
@@ -42,9 +30,12 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
 
-        createNotificationChannel(CHANNEL_ID, "channel", "channel;s description")
+        /*createNotificationChannel(CHANNEL_ID, "channel", "channels description")
 
-        displayNotification()
+        displayNotification()*/
+        val intent = Intent(this@MainActivity, MusicPlayerService::class.java)
+
+        startForegroundService(intent)
 
 
 
@@ -71,7 +62,7 @@ class MainActivity : AppCompatActivity() {
             true
         }
     }
-    private fun displayNotification() {
+    /*private fun displayNotification() {
         val notificationId = 45
 
         val notification = Notification.Builder(applicationContext, CHANNEL_ID)
@@ -82,7 +73,6 @@ class MainActivity : AppCompatActivity() {
 
         notificationManager?.notify(notificationId, notification)
     }
-
     private fun createNotificationChannel(channelId: String, name: String, channelDescription: String) {
         //notification 채널 생성
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
@@ -94,7 +84,7 @@ class MainActivity : AppCompatActivity() {
             notificationManager = getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
             notificationManager?.createNotificationChannel(channel)
         }
-    }
+    }*/
 
     private fun replaceFragment(fragment: Fragment) {
         supportFragmentManager.beginTransaction()

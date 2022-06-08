@@ -13,8 +13,8 @@ import bu.ac.kr.anyfeeling.R
 import bu.ac.kr.anyfeeling.service.MusicModel
 import com.bumptech.glide.Glide
 
-class PlayListAdapter(private val callback :(MusicModel)-> Unit) : ListAdapter<MusicModel, PlayListAdapter.ViewHolder>(diffUtil)
-{
+class PlayListAdapter(private val callback: (MusicModel) -> Unit) :
+    ListAdapter<MusicModel, PlayListAdapter.ViewHolder>(diffUtil) {
 
     inner class ViewHolder(private val view: View) : RecyclerView.ViewHolder(view) {
         fun bind(item: MusicModel) {
@@ -30,15 +30,16 @@ class PlayListAdapter(private val callback :(MusicModel)-> Unit) : ListAdapter<M
                 .into(coverImageView)
 
 
-            if(item.isPlaying){
+            if (item.isPlaying) {
                 itemView.setBackgroundColor(Color.GRAY)
 
-            }else{
+            } else {
                 itemView.setBackgroundColor(Color.TRANSPARENT)
             }
             itemView.setOnClickListener {
                 callback(item)
             }
+
         }
 
     }
@@ -56,7 +57,8 @@ class PlayListAdapter(private val callback :(MusicModel)-> Unit) : ListAdapter<M
 
         }
     }
-    companion object{
+
+    companion object {
         val diffUtil = object : DiffUtil.ItemCallback<MusicModel>() {
             override fun areItemsTheSame(oldItem: MusicModel, newItem: MusicModel): Boolean {
                 //안에 있는 컨텐츠들을 비교하는 것
