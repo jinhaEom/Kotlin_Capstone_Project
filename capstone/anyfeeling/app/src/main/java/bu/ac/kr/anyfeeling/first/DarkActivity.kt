@@ -1,11 +1,22 @@
 package bu.ac.kr.anyfeeling.first
 
+import android.app.Notification
+import android.app.NotificationChannel
+import android.app.NotificationManager
+import android.app.PendingIntent
+import android.content.Intent
+import android.os.Build
 import android.os.Bundle
 import android.os.Handler
 import android.widget.SeekBar
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.app.NotificationCompat
 import androidx.core.view.isVisible
 import androidx.recyclerview.widget.LinearLayoutManager
+import bu.ac.kr.anyfeeling.MainActivity
+import bu.ac.kr.anyfeeling.Notification.Actions
+import bu.ac.kr.anyfeeling.Notification.MusicNotification
+import bu.ac.kr.anyfeeling.Notification.MusicPlayerService
 import bu.ac.kr.anyfeeling.adapter.PlayListAdapter
 import bu.ac.kr.anyfeeling.PlayerModel
 import bu.ac.kr.anyfeeling.R
@@ -49,7 +60,6 @@ class DarkActivity : AppCompatActivity(R.layout.fragment_player) {
         initRecyclerView(fragmentPlayerBinding)
         initSeekBar(fragmentPlayerBinding)
         getVideoListFromServer()
-
 
     }
 
@@ -270,5 +280,7 @@ class DarkActivity : AppCompatActivity(R.layout.fragment_player) {
         myHandler?.removeCallbacks(updateSeekRunnable)
 
     }
+
+
 
 }

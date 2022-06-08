@@ -4,9 +4,13 @@ import android.app.Service
 import android.content.Intent
 import android.os.IBinder
 import android.util.Log
+import bu.ac.kr.anyfeeling.PlayerModel
+import com.google.android.exoplayer2.SimpleExoPlayer
 
 class MusicPlayerService : Service() {
-
+    val playerModel = PlayerModel()
+    private var model: PlayerModel = PlayerModel()
+    private var player: SimpleExoPlayer? = null
     override fun onStartCommand(intent: Intent?, flags: Int, startId: Int): Int {
 
         when (intent?.action) {
@@ -19,9 +23,9 @@ class MusicPlayerService : Service() {
                 Log.e(TAG, "stop Foreground 인텐트 받음")
                 stopForegroundService()
             }
-            Actions.PREV -> Log.e(TAG , "Clicked = 이전")
+            Actions.PREV -> model.prevMusic()
             Actions.PLAY -> Log.e(TAG , "Clicked = 재생")
-            Actions.NEXT -> Log.e(TAG , "Clicked = 다음")
+            Actions.NEXT -> model.nextMusic()
 
         }
 

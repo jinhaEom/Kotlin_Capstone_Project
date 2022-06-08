@@ -1,5 +1,6 @@
 package bu.ac.kr.anyfeeling.Notification
 
+import android.annotation.SuppressLint
 import android.app.Notification
 import android.app.NotificationChannel
 import android.app.NotificationManager
@@ -8,18 +9,32 @@ import android.app.PendingIntent.FLAG_UPDATE_CURRENT
 import android.content.Context
 import android.content.Intent
 import android.os.Build
+import android.os.Handler
 import androidx.core.app.NotificationCompat
 import bu.ac.kr.anyfeeling.MainActivity
+import bu.ac.kr.anyfeeling.PlayerModel
 import bu.ac.kr.anyfeeling.R
+import bu.ac.kr.anyfeeling.adapter.PlayListAdapter
+import bu.ac.kr.anyfeeling.databinding.FragmentPlayerBinding
+import bu.ac.kr.anyfeeling.first.HappyActivity
+import bu.ac.kr.anyfeeling.service.MusicEntity
+import bu.ac.kr.anyfeeling.service.MusicModel
+import bu.ac.kr.anyfeeling.service.MusicService.MusicService
+import com.google.android.exoplayer2.SimpleExoPlayer
 
 object MusicNotification {
+    private var model: PlayerModel = PlayerModel()
+    private var player: SimpleExoPlayer? = null
+    val playerModel = PlayerModel()
 
     const val CHANNEL_ID = "foreground_service_channel"
 
+    @SuppressLint("UnspecifiedImmutableFlag")
     fun createNotification(
         context: Context,
     ): Notification {
         //알림 클릭시 MainActivity로 이동
+        val player = this.player
         val notificationIntent = Intent(context, MainActivity::class.java)
         notificationIntent.action = Actions.MAIN
         notificationIntent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK

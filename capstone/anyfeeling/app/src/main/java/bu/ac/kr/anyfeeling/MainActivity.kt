@@ -11,6 +11,7 @@ import android.os.Bundle
 import android.view.View
 import android.view.WindowManager
 import androidx.fragment.app.Fragment
+import bu.ac.kr.anyfeeling.Notification.Actions
 import bu.ac.kr.anyfeeling.Notification.MusicPlayerService
 import bu.ac.kr.anyfeeling.first.FirstFragment
 import bu.ac.kr.anyfeeling.homeFragment.HomeFragment
@@ -34,8 +35,8 @@ class MainActivity : AppCompatActivity() {
 
         displayNotification()*/
         val intent = Intent(this@MainActivity, MusicPlayerService::class.java)
-
-        startForegroundService(intent)
+        intent.action = Actions.START_FOREGROUND
+        startService(intent)
 
 
 
