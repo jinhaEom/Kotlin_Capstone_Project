@@ -11,8 +11,7 @@ import android.os.Bundle
 import android.view.View
 import android.view.WindowManager
 import androidx.fragment.app.Fragment
-import bu.ac.kr.anyfeeling.Notification.Actions
-import bu.ac.kr.anyfeeling.Notification.MusicPlayerService
+
 import bu.ac.kr.anyfeeling.first.FirstFragment
 import bu.ac.kr.anyfeeling.homeFragment.HomeFragment
 import bu.ac.kr.anyfeeling.secondFragment.SecondFragment
@@ -21,8 +20,8 @@ import com.google.android.material.bottomnavigation.BottomNavigationView
 
 
 class MainActivity : AppCompatActivity() {
-    /*private val CHANNEL_ID = "testChannel01"   // Channel for notification
-    private var notificationManager: NotificationManager? = null*/
+    private val CHANNEL_ID = "testChannel01"   // Channel for notification
+    private var notificationManager: NotificationManager? = null
 
     private val binding by lazy { ActivityMainBinding.inflate(layoutInflater) }
 
@@ -31,12 +30,9 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
 
-        /*createNotificationChannel(CHANNEL_ID, "channel", "channels description")
+        createNotificationChannel(CHANNEL_ID, "channel", "channels description")
 
-        displayNotification()*/
-        val intent = Intent(this@MainActivity, MusicPlayerService::class.java)
-        intent.action = Actions.START_FOREGROUND
-        startService(intent)
+        displayNotification()
 
 
 
@@ -63,7 +59,7 @@ class MainActivity : AppCompatActivity() {
             true
         }
     }
-    /*private fun displayNotification() {
+    private fun displayNotification() {
         val notificationId = 45
 
         val notification = Notification.Builder(applicationContext, CHANNEL_ID)
@@ -85,7 +81,7 @@ class MainActivity : AppCompatActivity() {
             notificationManager = getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
             notificationManager?.createNotificationChannel(channel)
         }
-    }*/
+    }
 
     private fun replaceFragment(fragment: Fragment) {
         supportFragmentManager.beginTransaction()

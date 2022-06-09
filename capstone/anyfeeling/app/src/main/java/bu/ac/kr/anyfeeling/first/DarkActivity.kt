@@ -14,9 +14,7 @@ import androidx.core.app.NotificationCompat
 import androidx.core.view.isVisible
 import androidx.recyclerview.widget.LinearLayoutManager
 import bu.ac.kr.anyfeeling.MainActivity
-import bu.ac.kr.anyfeeling.Notification.Actions
-import bu.ac.kr.anyfeeling.Notification.MusicNotification
-import bu.ac.kr.anyfeeling.Notification.MusicPlayerService
+
 import bu.ac.kr.anyfeeling.adapter.PlayListAdapter
 import bu.ac.kr.anyfeeling.PlayerModel
 import bu.ac.kr.anyfeeling.R

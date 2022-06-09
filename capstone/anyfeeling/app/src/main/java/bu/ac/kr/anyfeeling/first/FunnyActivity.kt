@@ -50,7 +50,6 @@ class FunnyActivity : AppCompatActivity(R.layout.fragment_player) {
         initSeekBar(fragmentPlayerBinding)
         getVideoListFromServer()
 
-
     }
 
     private fun initSeekBar(fragmentPlayerBinding: FragmentPlayerBinding) {
