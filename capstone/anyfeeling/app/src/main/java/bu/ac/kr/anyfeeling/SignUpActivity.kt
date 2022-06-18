@@ -29,7 +29,7 @@ class SignUpActivity : AppCompatActivity() {
         val email = findViewById<EditText>(R.id.emailEditText)
         val password = findViewById<EditText>(R.id.passwordEditText)
         val passwordCheck = findViewById<EditText>(R.id.passwordCheck)
-        val signupOk = findViewById<Button>(R.id.signupOk)
+        val signupOk = findViewById<Button>(R.id.SignUpOk)
 
 
 
@@ -49,7 +49,7 @@ class SignUpActivity : AppCompatActivity() {
 
 
     private fun createAccount(email: String, password: String, passwordCheck: String) {
-        val signupOk = findViewById<Button>(R.id.signupOk)
+        val signupOk = findViewById<Button>(R.id.SignUpOk)
         if (email.isNotEmpty() && password.isNotEmpty()) {
             if (password != passwordCheck) {
                 Toast.makeText(this, "비밀번호가 일치하지 않습니다.", Toast.LENGTH_SHORT).show()
@@ -61,7 +61,7 @@ class SignUpActivity : AppCompatActivity() {
                             signupOk.isEnabled = true
                             Toast.makeText(
                                 this,
-                                "회원가입에 성공했습니다. 로그인 버튼을눌러 로그인 해주세요.",
+                                "회원가입에 성공했습니다!",
                                 Toast.LENGTH_SHORT
                             ).show()
 
